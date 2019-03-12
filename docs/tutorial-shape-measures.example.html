@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -651,14 +655,14 @@
 </style>
 
 <div id="wrap" class="section">
-    <h2>폴리라인, 폴리곤의 거리/면적 재기</h2>
-    <p>폴리라인, 폴리곤의 거리와 면적을 재는 방법을 설명하기 위한 컴포넌트 개발 예제입니다.<br />
-    이 예제는 jQuery 구문을 포함하고 있습니다.</p>
+    <h2>Measuring the distance and area of polylines and polygons</h2>
+    <p>The following code example shows the component development describing how to measure the distance and area of polylines and polygons.<br />
+    This example contains jQuery code.</p>
 
     <div id="map" style="width:100%;height:600px;">
         <ul class="measure-control">
-            <li><input id="distance" type="button" value="거리재기" class="control-btn" /></li>
-            <li><input id="area" type="button" value="면적재기" class="control-btn" /></li>
+            <li><input id="distance" type="button" value="Distance" class="control-btn"/></li>
+            <li><input id="area" type="button" value="Area" class="control-btn"/></li>
         </ul>
     </div>
     <code id="snippet" class="snippet"></code>
@@ -669,8 +673,8 @@ var HOME_PATH = window.HOME_PATH || '.';
 </script>
 
 <script type="text/javascript" id="code">
-// 지도 내 거리재기 또는 면적재기를 클릭하세요.
-// 거리/면적재기 동작 중 마우스 오른쪽 버튼을 클릭하면 해당 거리/면적재기가 종료됩니다.
+// Click the Distance or Area button on a map.
+// Right-click the last point to stop measuring.
 var Measure = function(buttons) {
     this.$btnDistance = buttons.distance;
     this.$btnArea = buttons.area;
@@ -742,7 +746,7 @@ $.extend(Measure.prototype, {
             var path = this._polyline.getPath(),
                 lastCoord = path.getAt(path.getLength() - 1),
                 distance = this._polyline.getDistance();
-                // 폴리라인의 거리를 미터 단위로 반환합니다.
+                // Return polyline length in meters.
 
             delete this._polyline;
 
@@ -773,7 +777,7 @@ $.extend(Measure.prototype, {
             var path = this._polygon.getPath();
             path.pop();
 
-            // 폴리곤의 면적을 제곱미터 단위로 반환합니다.
+            // Return the area of a polygon in square meters.
             var squarMeters = this._polygon.getAreaSize(),
                 lastCoord = path.getAt(path.getLength() - 1);
 
@@ -863,7 +867,7 @@ $.extend(Measure.prototype, {
             coord = e.coord;
 
         if (!this._polyline) {
-            // 임시로 보여줄 점선 폴리라인을 생성합니다.
+            // Create dotted polylines for temporary usage.
             this._guideline = new naver.maps.Polyline({
                 strokeColor: '#f00',
                 strokeWeight: 5,
@@ -876,7 +880,7 @@ $.extend(Measure.prototype, {
             $(document).on('mousemove.measure', this._onMouseMoveDistance.bind(this));
             this._distanceListeners.push(naver.maps.Event.addListener(map, 'rightclick', this._finishDistance.bind(this)));
 
-            // 실제 거리재기에 사용되는 폴리라인을 생성합니다.
+            // Create polylines that are actually used in measurement.
             this._polyline = new naver.maps.Polyline({
                 strokeColor: '#f00',
                 strokeWeight: 5,
@@ -885,13 +889,13 @@ $.extend(Measure.prototype, {
                 map: map
             });
 
-            // 폴리라인의 거리를 미터 단위로 반환합니다.
+            // Return polyline length in meters.
             this._lastDistance = this._polyline.getDistance();
         } else {
             this._guideline.setPath([e.coord]);
             this._polyline.getPath().push(coord);
 
-            // 폴리라인의 거리를 미터 단위로 반환합니다.
+            // Return polyline length in meters.
             var distance = this._polyline.getDistance();
 
             this._addMileStone(coord, this._fromMetersToText(distance - this._lastDistance));

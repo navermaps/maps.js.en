@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -651,11 +655,11 @@
 </style>
 
 <div id="wrap" class="section">
-    <h2>파노라마 지도 연동 예제</h2>
-    <p>파노라마와 지도를 연동하는 예제입니다.</p>
+    <h2>Connecting a map with a panorama</h2>
+    <p>The following code example connects a map with a panorama.</p>
     <div id="map" style="width:100%;height:300px;">
         <div class="buttons">
-            <input id="street" type="button" value="거리뷰" class="control-btn control-on" />
+            <input id="street" type="button" value="Street View" class="control-btn control-on"/>
         </div>
     </div>
     <div id="pano" style="width:100%;height:300px;"></div>
@@ -670,7 +674,7 @@ var map = new naver.maps.Map('map', {
 
 var pano = null;
 naver.maps.onJSContentLoaded = function() {
-    // 아이디 혹은 지도 좌표로 파노라마를 표시할 수 있습니다.
+    // Display a panorama with an ID or map coordinates.
     pano = new naver.maps.Panorama("pano", {
         position: new naver.maps.LatLng(37.3599605, 127.1058814),
         pov: {
@@ -680,7 +684,7 @@ naver.maps.onJSContentLoaded = function() {
         }
     });
 
-    // 파노라마 위치가 갱신되었을 때 발생하는 이벤트를 받아 지도의 중심 위치를 갱신합니다.
+    // The center position of a map changes by receiving an event occurring when the panorama position is updated.
     naver.maps.Event.addListener(pano, 'pano_changed', function() {
         var latlng = pano.getPosition();
 
@@ -690,17 +694,17 @@ naver.maps.onJSContentLoaded = function() {
     });
 };
 
-// 거리뷰 레이어를 생성합니다.
+// Create a street view layer.
 var streetLayer = new naver.maps.StreetLayer();
 streetLayer.setMap(map);
 
-// 거리뷰 버튼에 이벤트를 바인딩합니다.
+// Bind an event to the street view button.
 var btn = $('#street');
 btn.on("click", function(e) {
     e.preventDefault();
 
-    // 거리뷰 레이어가 지도 위에 있으면 거리뷰 레이어를 지도에서 제거하고,
-    // 거리뷰 레이어가 지도 위에 없으면 거리뷰 레이어를 지도에 추가합니다.
+    // Remove a street view layer from a map if it exists on a map.
+    // Add a street view layer to a map if it does not exist on a map.
     if (streetLayer.getMap()) {
         streetLayer.setMap(null);
     } else {
@@ -708,7 +712,7 @@ btn.on("click", function(e) {
     }
 });
 
-// 거리뷰 레이어가 변경되면 발생하는 이벤트를 지도로부터 받아 버튼의 상태를 변경합니다.
+// Change the button status by receiving an event occurring when a street view layer is updated.
 naver.maps.Event.addListener(map, 'streetLayer_changed', function(streetLayer) {
     if (streetLayer) {
         btn.addClass('control-on');
@@ -717,12 +721,12 @@ naver.maps.Event.addListener(map, 'streetLayer_changed', function(streetLayer) {
     }
 });
 
-// 지도를 클릭했을 때 발생하는 이벤트를 받아 파노라마 위치를 갱신합니다. 이때 거리뷰 레이어가 있을 때만 갱신하도록 합니다.
+// Change the panorama position by receiving an event occurring when a map is clicked. Note that a street view layer must exist on a map in order for the position to be updated.
 naver.maps.Event.addListener(map, 'click', function(e) {
     if (streetLayer.getMap()) {
         var latlng = e.coord;
 
-        // 파노라마의 setPosition()은 해당 위치에서 가장 가까운 파노라마(검색 반경 300미터)를 자동으로 설정합니다.
+        // The setPosition() method of a panorama automatically sets the nearest position of the panorama (within a radius of 300 meters) to the position.
         pano.setPosition(latlng);
     }
 });

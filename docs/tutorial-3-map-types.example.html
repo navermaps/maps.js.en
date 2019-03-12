@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -650,14 +654,14 @@
     #wrap .buttons .control-btn { margin:0 5px 5px 0; }
 </style>
 <div id="wrap" class="section">
-    <h2>지도 유형 설정하기</h2>
-    <p>지도의 유형을 설정하는 예제입니다. 이 예제는 jQuery 구문을 포함하고 있습니다.</p>
+    <h2>Setting map types</h2>
+    <p>The following code example sets map types. This example contains jQuery code.</p>
     <div id="map" style="width:100%;height:600px;">
         <div class="buttons">
-            <input id="NORMAL" type="button" value="일반지도" class="control-btn control-on" />
-            <input id="TERRAIN" type="button" value="지형도" class="control-btn" />
-            <input id="SATELLITE" type="button" value="위성지도" class="control-btn" />
-            <input id="HYBRID" type="button" value="겹쳐보기" class="control-btn" />
+            <input id="NORMAL" type="button" value="Basic" class="control-btn control-on"/>
+            <input id="TERRAIN" type="button" value="Terrain" class="control-btn"/>
+            <input id="SATELLITE" type="button" value="Satellite" class="control-btn"/>
+            <input id="HYBRID" type="button" value="Hybrid" class="control-btn"/>
         </div>
     </div>
     <code id="snippet" class="snippet"></code>
@@ -675,7 +679,7 @@ btns.on("click", function(e) {
     var mapTypeId = this.id;
 
     if (map.getMapTypeId() !== naver.maps.MapTypeId[mapTypeId]) {
-        map.setMapTypeId(naver.maps.MapTypeId[mapTypeId]); // 지도 유형 변경하기
+        map.setMapTypeId(naver.maps.MapTypeId[mapTypeId]); // Change map types.
 
         btns.removeClass("control-on");
         $(this).addClass("control-on");

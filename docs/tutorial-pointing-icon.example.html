@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -651,12 +655,13 @@
 </style>
 
 <div id="wrap" class="section">
-    <p>폴리라인의 시작/끝점에 아이콘을 표시하는 예제입니다</p>
+    <h2>Adding arrowheads to polylines</h2>
+	<p>The following code example displays an icon at the start and end points of a polyline.</p>
 
     <div id="map" style="width:100%;height:600px;">
         <ul class="measure-control">
-            <li><input id="increase_sw" type="button" value="폴리라인 두께 증가" class="control-btn" /></li>
-            <li><input id="decrease_sw" type="button" value="폴리라인 두께 감소" class="control-btn" /></li>
+            <li><input id="increase_sw" type="button" value="Make line thicker" class="control-btn"/></li>
+            <li><input id="decrease_sw" type="button" value="Make line thinner" class="control-btn"/></li>
         </ul>
     </div>
     <code id="snippet" class="snippet"></code>
@@ -678,8 +683,8 @@ var map = new naver.maps.Map("map", {
     lowerP2 = upperP2.destinationPoint(180, 1500),
     strokeWeight = 6;
 
-// 폴리라인의 시작/끝 점에 아이콘을 추가합니다.
-// 아이콘 크기를 지정하지 않은 경우, 폴라리인의 strokeWeight값에 영향을 받습니다.
+// Add an icon at the start/end points of a polyline.
+// If icon size is not set, it is affected by the strokeWeight value of the polyline.
 var openArrowLine = new naver.maps.Polyline({
         path: [
             upperP1,
@@ -714,7 +719,7 @@ var circleAndDiamondLine = new naver.maps.Polyline({
         strokeWeight: strokeWeight
 });
 
-// 아이콘 크기를 지정한 경우, 폴라리인의 strokeWeight값에 영향을 받지 않습니다.
+// If icon size is set, it is not affected by the strokeWeight value of the polyline.
 var sizedOpenArrowLine = new naver.maps.Polyline({
         path: [
             lowerP1,
@@ -722,7 +727,7 @@ var sizedOpenArrowLine = new naver.maps.Polyline({
         ],
         map: map,
         endIcon: naver.maps.PointingIcon.OPEN_ARROW,
-        //아이콘의 크기를 지정합니다. 단위는 픽셀입니다.
+        // Specify the icon size in pixels.
         endIconSize: 20,
         strokeColor: '#ff0000',
         strokeWeight: strokeWeight
@@ -740,7 +745,7 @@ var sizedBlockArrowLine = new naver.maps.Polyline({
         strokeWeight: strokeWeight
     });
 
-// 아이콘에는 투명도가 적용되지 않습니다.
+// Transparency is not applied to icons.
 var sizedCircleAndDiamondLine = new naver.maps.Polyline({
         path: [
             lowerP1.destinationPoint(90, 800),

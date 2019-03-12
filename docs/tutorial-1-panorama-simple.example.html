@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -646,8 +650,8 @@
 <!--  -->
 
 <div id="wrap" class="section">
-    <h2>파노라마 기본 예제</h2>
-    <p>기본 파노라마를 생성하는 예제입니다.</p>
+    <h2>Creating a basic panorama</h2>
+    <p>The following code example creates a basic panorama.</p>
     <div id="pano" style="width:100%;height:800px;"></div>
     <code id="snippet" class="snippet"></code>
 </div>
@@ -656,7 +660,7 @@
 var pano = null;
 
 naver.maps.onJSContentLoaded = function() {
-    // 아이디 혹은 지도 좌표로 파노라마를 표시할 수 있습니다.
+    // You can display a panorama using an ID or map coordinates.
     pano = new naver.maps.Panorama("pano", {
         // panoId: "OregDk87L7tsQ35dcpp+Mg==",
         position: new naver.maps.LatLng(37.3599605, 127.1058814),

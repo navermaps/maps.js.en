@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -650,17 +654,17 @@
     #wrap .buttons .control-btn { margin:0 5px 5px 0; }
 </style>
 <div id="wrap" class="section">
-    <h2>지도 이동하기</h2>
-    <p>지도를 이동하는 여러 가지 방법에 대한 예제입니다. 이 예제는 jQuery 구문을 포함하고 있습니다.</p>
-    <p>지도 이동 메서드에 대한 자세한 내용은 <a href="naver.maps.Map.html">Map</a>을 참고하세요.</p>
+    <h2>Moving the map</h2>
+    <p>The following code example shows various ways to move a map. This example contains jQuery code.</p>
+    <p>For more information on methods for moving the map, refer to <a href="naver.maps.Map.html">Map</a>.</p>
     <div id="map" style="width:100%;height:600px;">
         <div class="buttons">
-            <input id="to-jeju" type="button" value="제주도로 setCenter" class="control-btn" />
-            <input id="to-1" type="button" value="1레벨로 setZoom" class="control-btn" />
-            <input id="to-dokdo" type="button" value="독도로 fitBounds" class="control-btn" />
-            <input id="to-busan" type="button" value="부산으로 panTo" class="control-btn" />
-            <input id="to-seoul" type="button" value="서울로 panToBounds" class="control-btn" />
-            <input id="panBy" type="button" value="panBy로 조금씩 이동하기" class="control-btn" />
+            <input id="to-jeju" type="button" value="setCenter (Jeju-do)" class="control-btn"/>
+            <input id="to-1" type="button" value="setZoom (level 1)" class="control-btn"/>
+            <input id="to-dokdo" type="button" value="fitBounds (Dokdo)" class="control-btn"/>
+            <input id="to-busan" type="button" value="panTo (Busan)" class="control-btn"/>
+            <input id="to-seoul" type="button" value="panToBounds (Seoul)" class="control-btn"/>
+            <input id="panBy" type="button" value="panBy" class="control-btn"/>
         </div>
     </div>
     <code id="snippet" class="snippet"></code>

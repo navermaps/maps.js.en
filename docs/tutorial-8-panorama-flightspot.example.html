@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -646,13 +650,13 @@
 <!--  -->
 
 <div id="wrap" class="section">
-    <h2>지도에 항공뷰 아이콘 표시하기</h2>
-    <p>네이버 지도에서 제공하는 항공뷰를 지도에 표시하는 예제입니다. 자세한 내용은 <a href="naver.maps.FlightSpot.html">FlightSpot</a>을 참고하세요. </p>
-    <p>이 예제는 jQuery 구문을 포함하고 있습니다.</p>
+    <h2>Displaying Aerial View icons</h2>
+    <p>The following code example displays Aerial View icons on a map. For more information, refer to <a href="naver.maps.FlightSpot.html">FlightSpot</a>. </p>
+    <p>This example contains jQuery code.</p>
     <div id="map" style="width:100%;height:600px;"></div>
 
     <div id="button-wrap" class="buttons">
-        <input id="fligtspot" type="button" value="FlightSpot 제거" class="control-btn control-on" />
+        <input id="fligtspot" type="button" value="Delete FlightSpot" class="control-btn control-on"/>
     </div>
 
     <code id="snippet" class="snippet"></code>
@@ -670,10 +674,10 @@ var map = new naver.maps.Map("map", mapOptions),
 naver.maps.onJSContentLoaded = function() {
     flightSpot = new naver.maps.FlightSpot();
 
-    flightSpot.setMap(map); // 항공뷰 아이콘을 지도에 표시합니다.
+    flightSpot.setMap(map); // Display Aerial View icons on a map.
 
     naver.maps.Event.addListener(flightSpot, "poi_clicked", function(panoId) {
-        alert(panoId); //클러스터링 마커가 아닌 일반 마커에서 클릭해야 동작합니다.
+        alert(panoId); // You should click default markers instead of clustered markers.
     });
 
     $("#fligtspot").on("click", function(e) {
@@ -683,10 +687,10 @@ naver.maps.onJSContentLoaded = function() {
 
         if (flightSpot.getMap()) {
             flightSpot.setMap(null);
-            el.val("FlightSpot 추가").removeClass("control-on");
+            el.val("Add FlightSpot").removeClass("control-on");
         } else {
             flightSpot.setMap(map);
-            el.val("FlightSpot 제거").addClass("control-on");
+            el.val("Remove FlightSpot").addClass("control-on");
         }
     });
 };

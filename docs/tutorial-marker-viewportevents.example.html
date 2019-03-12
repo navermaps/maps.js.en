@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -646,9 +650,9 @@
 <!--  -->
 
 <div id="wrap" class="section">
-    <h2>다수의 마커에 이벤트 핸들러 사용하기</h2>
-    <p>다수의 마커를 배열로 관리하고, 개별 마커에서 이벤트가 발생하면 적절한 데이터를 조회할 수 있도록 하는 예제입니다.<br />
-    마커를 클릭하면 정보 창이 열립니다.</p>
+    <h2>Using an event handler for multiple markers</h2>
+    <p>The following code example creates an array to hold multiple markers.<br />
+    An info window opens when a marker is clicked.</p>
     <div id="map" style="width:100%;height:600px;"></div>
     <code id="snippet" class="snippet"></code>
 </div>
@@ -763,7 +767,7 @@ function hideMarker(map, marker) {
     marker.setMap(null);
 }
 
-// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
+// Return an event handler storing the marker index as a closure variable named seq.
 function getClickHandler(seq) {
     return function(e) {
         var marker = markers[seq],

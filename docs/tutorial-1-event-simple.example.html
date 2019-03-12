@@ -567,6 +567,10 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-3-drawing-restore.example.html">Extracting and restoring overlay data</a></li>
                 
+                        <li><a href="tutorial-digest.example.html#StyleMap" class="_cat" style="padding-left:10px" >StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
+                
                         
                     </ul>
                 </li>
@@ -646,9 +650,9 @@
 <!--  -->
 
 <div id="wrap" class="section">
-    <h2>지도 이벤트</h2>
-    <p>지도의 클릭 이벤트를 이용하는 예제입니다. 클릭 위치에 마커를 표시하고, 마우스 오른쪽 버튼을 클릭하면 정보 레이어를 표시합니다. </p>
-    <p>이 예제는 jQuery 구문을 포함하고 있습니다.</p>
+    <h2>Map events</h2>
+    <p>The following code example uses click events of the map. A marker is displayed when a map is clicked, an info layer is displayed when a map is right-clicked. </p>
+    <p>This example contains jQuery code.</p>
     <div id="map" style="width:100%;height:600px;"></div>
     <code id="snippet" class="snippet"></code>
 </div>
@@ -698,7 +702,7 @@
 
     naver.maps.Event.addListener(map, 'rightclick', function(e) {
         var coordHtml =
-            'Coord: '+ '(우 클릭 지점 위/경도 좌표)' + '<br />' +
+            'Coord: '+ '(Latitude/longitude coordinates of the right-clicked point)' + '<br />' +
             'Point: ' + e.point + '<br />' +
             'Offset: ' + e.offset;
 

@@ -8,8 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>Displaying the NAVER live traffic layer | 네이버 지도 API v3</title>
-    <meta name="description" content="Example: Displaying the NAVER live traffic layer">
+    <title>StyleMap Example | 네이버 지도 API v3</title>
+    <meta name="description" content="Example: StyleMap Example">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="NAVER Maps API v3 바로가기">
     <meta property="og:title" content="NAVER Maps API v3">
@@ -630,7 +630,7 @@
                     <span itemprop="keywords">api</span>
                     <span itemprop="keywords">v3</span>
                     <span itemprop="keywords">네이버 지도 API</span>
-                    <span itemprop="keywords">Displaying the NAVER live traffic layer</span>
+                    <span itemprop="keywords">StyleMap Example</span>
                 </div>
             </div>
             <script src="./js/jquery-1.9.1.js"></script>
@@ -643,81 +643,112 @@
 <article>
     
 
-    <h1>Displaying the NAVER live traffic layer</h1>
+    <h1>StyleMap Example</h1>
 
     
 
 <!--  -->
 
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk&submodules=stylemap"></script>
 <style type="text/css">
-    #wrap .buttons, #wrap .checkbox { position:absolute;top:0;left:0;z-index:1000;padding:5px; }
+    #wrap .buttons { position:absolute;top:0;left:0;z-index:1000;padding:5px; }
     #wrap .buttons .control-btn { margin:0 5px 5px 0; }
-    #wrap .checkbox { top:30px;left:5px;border:solid 1px #333;padding:2px;background-color:#fff;display:none;font-size:11px; }
-    input[type="checkbox"] {margin-left: 0px !important;}
 </style>
-
 <div id="wrap" class="section">
-    <h2>Displaying the NAVER live traffic layer</h2>
-    <p>The following code example creates a NAVER live traffic layer. This example contains jQuery code.</p>
+    <h2>Creating a map with StyleMap</h2>
+    <p>The following code example creates a map by using the StyleMap submodule. This example contains jQuery code.</p>
     <div id="map" style="width:100%;height:600px;">
         <div class="buttons">
-            <input id="traffic" type="button" value="Traffic" class="control-btn"/>
-        </div>
-        <div class="checkbox">
-            <input id="autorefresh" type="checkbox" checked="checked" value="1"/><label for="autorefresh">Refresh</label>
+            <input id="lko" type="button" name="POI in Korean" value="POI in Korean" class="control-btn"/>
+            <input id="br" type="button" name="Bicycle" value="Bicycle" class="control-btn"/>
+            <input id="ps" type="button" name="Panorama" value="Panorama" class="control-btn"/>
+            <input id="lp" type="button" name="Cadastral" value="Cadastral" class="control-btn"/>
+            <input id="ar" type="button" name="Trail" value="Trail" class="control-btn"/>
+            <input id="ts" type="button" name="Transit" value="Transit" class="control-btn"/>
         </div>
     </div>
     <code id="snippet" class="snippet"></code>
 </div>
 <script id="code">
-var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(37.3595704, 127.105399),
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-        style: naver.maps.MapTypeControlStyle.DROPDOWN
+    var map = null,
+        toggleClassName = "control-on";
+
+    naver.maps.onJSContentLoaded = function() {
+        map = new naver.maps.Map('map', {
+            mapTypes: naver.maps.StyleMapTypeOption.getMapTypes(),
+            mapTypeId: naver.maps.StyleMapTypeId.NORMAL,
+            center: new naver.maps.LatLng(37.3595704, 127.105399),
+            zoom: 16,
+            mapTypeControl: true,
+            mapTypeControlOptions: {
+                style: naver.maps.MapTypeControlStyle.DROPDOWN
+            }
+        });
+
+        naver.maps.Event.addListener(map, 'mapType_changed', function(projection) {
+            var mapType = map.mapTypes.selectedMapType;
+            mapType.clearLayer();
+            mapType.addLayer(naver.maps.StyleMapLayerId.POI_KOREAN);
+            $("#lko").addClass(toggleClassName);
+            $("#br, #ps, #lp, #ar, #ts").removeClass(toggleClassName);
+        });
+    };
+
+    $("#lko").addClass(toggleClassName);
+
+    // Korean POI toggle
+    $("#lko").on("click", function(e) {
+        e.preventDefault();
+        toggleButtonAndLayer($(this), toggleClassName, naver.maps.StyleMapLayerId.POI_KOREAN);
+        map.refresh();
+    });
+
+    // Bicycle toggle
+    $("#br").on("click", function(e) {
+        e.preventDefault();
+        toggleButtonAndLayer($(this), toggleClassName, naver.maps.StyleMapLayerId.BYCYCLE);
+        map.refresh();
+    });
+
+    // Panorama toggle
+    $("#ps").on("click", function(e) {
+        e.preventDefault();
+        toggleButtonAndLayer($(this), toggleClassName, naver.maps.StyleMapLayerId.PANORAMA);
+        map.refresh();
+    });
+
+    // Cadastral toggle
+    $("#lp").on("click", function(e) {
+        e.preventDefault();
+        toggleButtonAndLayer($(this), toggleClassName, naver.maps.StyleMapLayerId.CADASTRAL);
+        map.refresh();
+    });
+
+    // Trail toggle
+    $("#ar").on("click", function(e) {
+        e.preventDefault();
+        toggleButtonAndLayer($(this), toggleClassName, naver.maps.StyleMapLayerId.HIKING_TRAIL);
+        map.refresh();
+    });
+
+    // Transit toggle
+    $("#ts").on("click", function(e) {
+        e.preventDefault();
+        toggleButtonAndLayer($(this), toggleClassName, naver.maps.StyleMapLayerId.TRANSIT);
+        map.refresh();
+    });
+
+    function toggleButtonAndLayer(el, toggleClassName, layerId) {
+        var mapType = map.mapTypes.selectedMapType;
+
+        if (el.hasClass(toggleClassName)) {
+            mapType.removeLayer(layerId);
+            el.removeClass(toggleClassName);
+        } else {
+            mapType.addLayer(layerId);
+            el.addClass(toggleClassName);
+        }
     }
-});
-
-var trafficLayer = new naver.maps.TrafficLayer({
-    interval: 2000 // Refresh every 2 seconds.
-});
-
-var btn = $('#traffic');
-
-naver.maps.Event.addListener(map, 'trafficLayer_changed', function(trafficLayer) {
-    if (trafficLayer) {
-        btn.addClass('control-on');
-        $("#autorefresh").parent().show();
-        $("#autorefresh")[0].checked = true;
-    } else {
-        btn.removeClass('control-on');
-        $("#autorefresh").parent().hide();
-    }
-});
-
-trafficLayer.setMap(map);
-
-
-btn.on("click", function(e) {
-    e.preventDefault();
-
-    if (trafficLayer.getMap()) {
-        trafficLayer.setMap(null);
-    } else {
-        trafficLayer.setMap(map);
-    }
-});
-
-$("#autorefresh").on("click", function(e) {
-    var btn = $(this),
-        checked = btn.is(":checked");
-
-    if (checked) {
-        trafficLayer.startAutoRefresh();
-    } else {
-        trafficLayer.endAutoRefresh();
-    }
-});
 </script>
 
 
