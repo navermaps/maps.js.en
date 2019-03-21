@@ -659,6 +659,7 @@
     <p>The following code example creates a map by using the StyleMap submodule. This example contains jQuery code.</p>
     <div id="map" style="width:100%;height:600px;">
         <div class="buttons">
+            <input id="ol" type="button" name="Background Detail" value="Background Detail" class="control-btn"/>
             <input id="lko" type="button" name="POI in Korean" value="POI in Korean" class="control-btn"/>
             <input id="br" type="button" name="Bicycle" value="Bicycle" class="control-btn"/>
             <input id="ps" type="button" name="Panorama" value="Panorama" class="control-btn"/>
@@ -688,13 +689,16 @@
         naver.maps.Event.addListener(map, 'mapType_changed', function(projection) {
             var mapType = map.mapTypes.selectedMapType;
             mapType.clearLayer();
-            mapType.addLayer(naver.maps.StyleMapLayerId.POI_KOREAN);
-            $("#lko").addClass(toggleClassName);
-            $("#br, #ps, #lp, #ar, #ts").removeClass(toggleClassName);
+            $("#ol, #br, #ps, #lp, #ar, #ts").removeClass(toggleClassName);
         });
     };
 
-    $("#lko").addClass(toggleClassName);
+    // Background detail toggle
+    $("#ol").on("click", function(e) {
+        e.preventDefault();
+        toggleButtonAndLayer($(this), toggleClassName, naver.maps.StyleMapLayerId.BACKGROUND_DETAIL);
+        map.refresh();
+    });
 
     // Korean POI toggle
     $("#lko").on("click", function(e) {
