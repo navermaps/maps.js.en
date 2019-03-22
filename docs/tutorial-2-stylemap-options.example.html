@@ -8,8 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>Displaying markers only on the visible area | 네이버 지도 API v3</title>
-    <meta name="description" content="Example: Displaying markers only on the visible area">
+    <title>StyleMap initialize options example | 네이버 지도 API v3</title>
+    <meta name="description" content="Example: StyleMap initialize options example">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="NAVER Maps API v3 바로가기">
     <meta property="og:title" content="NAVER Maps API v3">
@@ -632,7 +632,7 @@
                     <span itemprop="keywords">api</span>
                     <span itemprop="keywords">v3</span>
                     <span itemprop="keywords">네이버 지도 API</span>
-                    <span itemprop="keywords">Displaying markers only on the visible area</span>
+                    <span itemprop="keywords">StyleMap initialize options example</span>
                 </div>
             </div>
             <script src="./js/jquery-1.9.1.js"></script>
@@ -645,122 +645,137 @@
 <article>
     
 
-    <h1>Displaying markers only on the visible area</h1>
+    <h1>StyleMap initialize options example</h1>
 
     
 
 <!--  -->
-
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk&submodules=stylemap"></script>
+<style type="text/css">
+    #wrap .buttons { position:absolute;top:0;left:0;z-index:1000;padding:5px; }
+    #wrap .buttons .control-btn { margin:0 5px 5px 0; }
+</style>
 <div id="wrap" class="section">
-    <h2>Displaying markers only on the visible area</h2>
-    <p>The following code example improves performance by displaying markers only on the visible area.</p>
-    <div id="map" style="width:100%;height:600px;"></div>
+    <h2>StyleMap initialize options example</h2>
+    <p>The following code example creates a map by using the StyleMap submodule. This example contains jQuery code.</p>
+    <div id="map" style="width:100%;height:600px;">
+        <div class="buttons">
+            <input id="ol" type="button" name="배경상세" value="배경상세" class="control-btn" />
+            <input id="lko" type="button" name="한국어POI" value="한국어POI" class="control-btn" />
+            <input id="ts" type="button" name="대중교통" value="대중교통" class="control-btn" />
+            <input id="ctt" type="button" name="교통혼잡" value="교통혼잡" class="control-btn" />
+            <input id="ps" type="button" name="파노라마" value="파노라마" class="control-btn" />
+            <input id="br" type="button" name="자전거" value="자전거" class="control-btn" />
+            <input id="ar" type="button" name="등산로" value="등산로" class="control-btn" />
+            <input id="lp" type="button" name="지적편집도" value="지적편집도" class="control-btn" />
+        </div>
+    </div>
     <code id="snippet" class="snippet"></code>
 </div>
 <script id="code">
-var HOME_PATH = window.HOME_PATH || '.';
-var MARKER_SPRITE_X_OFFSET = 29,
-    MARKER_SPRITE_Y_OFFSET = 50,
-    MARKER_SPRITE_POSITION = {
-        "A0": [0, 0],
-        "B0": [MARKER_SPRITE_X_OFFSET, 0],
-        "C0": [MARKER_SPRITE_X_OFFSET*2, 0],
-        "D0": [MARKER_SPRITE_X_OFFSET*3, 0],
-        "E0": [MARKER_SPRITE_X_OFFSET*4, 0],
-        "F0": [MARKER_SPRITE_X_OFFSET*5, 0],
-        "G0": [MARKER_SPRITE_X_OFFSET*6, 0],
-        "H0": [MARKER_SPRITE_X_OFFSET*7, 0],
-        "I0": [MARKER_SPRITE_X_OFFSET*8, 0],
+    var map = null,
+        controlClass = 'control-on',
+        layerIdList = ['#ol', '#lko', '#br', '#ps', '#lp', '#ar', '#ts', '#ctt'];
 
-        "A1": [0, MARKER_SPRITE_Y_OFFSET],
-        "B1": [MARKER_SPRITE_X_OFFSET, MARKER_SPRITE_Y_OFFSET],
-        "C1": [MARKER_SPRITE_X_OFFSET*2, MARKER_SPRITE_Y_OFFSET],
-        "D1": [MARKER_SPRITE_X_OFFSET*3, MARKER_SPRITE_Y_OFFSET],
-        "E1": [MARKER_SPRITE_X_OFFSET*4, MARKER_SPRITE_Y_OFFSET],
-        "F1": [MARKER_SPRITE_X_OFFSET*5, MARKER_SPRITE_Y_OFFSET],
-        "G1": [MARKER_SPRITE_X_OFFSET*6, MARKER_SPRITE_Y_OFFSET],
-        "H1": [MARKER_SPRITE_X_OFFSET*7, MARKER_SPRITE_Y_OFFSET],
-        "I1": [MARKER_SPRITE_X_OFFSET*8, MARKER_SPRITE_Y_OFFSET],
+    naver.maps.onJSContentLoaded = function() {
+        map = new naver.maps.Map('map', {
+            mapTypes: naver.maps.StyleMapTypeOption.getMapTypes({
+                initLayers: [
+                    naver.maps.StyleMapLayerId.BACKGROUND_DETAIL,
+                    naver.maps.StyleMapLayerId.POI_KOREAN,
+                    naver.maps.StyleMapLayerId.TRANSIT,
+                    naver.maps.StyleMapLayerId.CTT,
+                ]
+            }),
+            mapTypeId: naver.maps.StyleMapTypeId.NORMAL,
+            center: new naver.maps.LatLng(37.3595704, 127.105399),
+            zoom: 16,
+            mapTypeControl: true,
+            mapTypeControlOptions: {
+                style: naver.maps.MapTypeControlStyle.DROPDOWN
+            }
+        });
 
-        "A2": [0, MARKER_SPRITE_Y_OFFSET*2],
-        "B2": [MARKER_SPRITE_X_OFFSET, MARKER_SPRITE_Y_OFFSET*2],
-        "C2": [MARKER_SPRITE_X_OFFSET*2, MARKER_SPRITE_Y_OFFSET*2],
-        "D2": [MARKER_SPRITE_X_OFFSET*3, MARKER_SPRITE_Y_OFFSET*2],
-        "E2": [MARKER_SPRITE_X_OFFSET*4, MARKER_SPRITE_Y_OFFSET*2],
-        "F2": [MARKER_SPRITE_X_OFFSET*5, MARKER_SPRITE_Y_OFFSET*2],
-        "G2": [MARKER_SPRITE_X_OFFSET*6, MARKER_SPRITE_Y_OFFSET*2],
-        "H2": [MARKER_SPRITE_X_OFFSET*7, MARKER_SPRITE_Y_OFFSET*2],
-        "I2": [MARKER_SPRITE_X_OFFSET*8, MARKER_SPRITE_Y_OFFSET*2]
+        naver.maps.Event.addListener(map, 'mapType_changed', function(projection) {
+            var mapType = map.mapTypes.selectedMapType;
+            mapType.clearLayer();
+            $(layerIdList.join(',')).removeClass(controlClass);
+        });
+
+        naver.maps.Event.addListener(map, 'tilesloaded', function(projection) {
+            $(layerIdList.join(',')).removeClass(controlClass);
+            var mapType = map.mapTypes.selectedMapType;
+            var layers = mapType.getLayerIds();
+            for (var i = 0; i < layers.length; i++) {
+                layers[i] = '#' + layers[i];
+            }
+            $(layers.join(',')).addClass(controlClass);
+        });
     };
 
-var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(37.3595704, 127.105399),
-    zoom: 10
-});
-
-var bounds = map.getBounds(),
-    southWest = bounds.getSW(),
-    northEast = bounds.getNE(),
-    lngSpan = northEast.lng() - southWest.lng(),
-    latSpan = northEast.lat() - southWest.lat();
-
-var markers = [];
-
-for (var key in MARKER_SPRITE_POSITION) {
-
-    var position = new naver.maps.LatLng(
-        southWest.lat() + latSpan * Math.random(),
-        southWest.lng() + lngSpan * Math.random());
-
-    var marker = new naver.maps.Marker({
-        map: map,
-        position: position,
-        title: key,
-        icon: {
-            url: HOME_PATH +'/img/example/sp_pins_spot_v3.png',
-            size: new naver.maps.Size(24, 37),
-            anchor: new naver.maps.Point(12, 37),
-            origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
-        },
-        zIndex: 100
+    // 배경 상세 토글
+    $('#ol').on('click', function(e) {
+        e.preventDefault();
+        toggle($(this), naver.maps.StyleMapLayerId.BACKGROUND_DETAIL);
     });
 
-    markers.push(marker);
-};
+    // 한국어 POI 토글
+    $('#lko').on('click', function(e) {
+        e.preventDefault();
+        toggle($(this), naver.maps.StyleMapLayerId.POI_KOREAN);
+    });
 
-naver.maps.Event.addListener(map, 'idle', function() {
-    updateMarkers(map, markers);
-});
+    // 자전거 토글
+    $('#br').on('click', function(e) {
+        e.preventDefault();
+        toggle($(this), naver.maps.StyleMapLayerId.BYCYCLE);
+    });
 
-function updateMarkers(map, markers) {
+    // 파노라마 토글
+    $('#ps').on('click', function(e) {
+        e.preventDefault();
+        toggle($(this), naver.maps.StyleMapLayerId.PANORAMA);
+    });
 
-    var mapBounds = map.getBounds();
-    var marker, position;
+    // 지적편집도 토글
+    $('#lp').on('click', function(e) {
+        e.preventDefault();
+        toggle($(this), naver.maps.StyleMapLayerId.CADASTRAL);
+    });
 
-    for (var i = 0; i < markers.length; i++) {
+    // 등산로 토글
+    $('#ar').on('click', function(e) {
+        e.preventDefault();
+        toggle($(this), naver.maps.StyleMapLayerId.HIKING_TRAIL);
+    });
 
-        marker = markers[i]
-        position = marker.getPosition();
+    // 대중교통 토글
+    $('#ts').on('click', function(e) {
+        e.preventDefault();
+        toggle($(this), naver.maps.StyleMapLayerId.TRANSIT);
+    });
 
-        if (mapBounds.hasLatLng(position)) {
-            showMarker(map, marker);
-        } else {
-            hideMarker(map, marker);
-        }
+    // 교통혼잡 토글
+    $('#ctt').on('click', function(e) {
+        e.preventDefault();
+        toggle($(this), naver.maps.StyleMapLayerId.CTT);
+    });
+
+    function toggle(el, id) {
+        update(el, controlClass, id);
     }
-}
 
-function showMarker(map, marker) {
-
-    if (marker.getMap()) return;
-    marker.setMap(map);
-}
-
-function hideMarker(map, marker) {
-
-    if (!marker.getMap()) return;
-    marker.setMap(null);
-}
+    function update(el, toggleClassName, layerId) {
+        var mapType = map.mapTypes.selectedMapType;
+        if (el.hasClass(toggleClassName)) {
+            mapType.removeLayer(layerId);
+            el.removeClass(toggleClassName);
+        } else {
+            mapType.addLayer(layerId);
+            el.addClass(toggleClassName);
+        }
+        map.refresh();
+    }
 </script>
 
 
