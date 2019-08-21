@@ -8,8 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>StyleMapTypeId | 네이버 지도 API v3</title>
-    <meta name="description" content="StaticObjects: StyleMapTypeId">
+    <title>Displaying the cadastral map layer by using the StyleMap | 네이버 지도 API v3</title>
+    <meta name="description" content="Example: Displaying the cadastral map layer by using the StyleMap">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="NAVER Maps API v3 바로가기">
     <meta property="og:title" content="NAVER Maps API v3">
@@ -189,10 +189,6 @@
                 
                         <li><a style="padding-left:20px;" href="naver.maps.visualization.WeightedLocation.html">naver.maps.visualization.WeightedLocation</a></li>
                 
-                        <li><a href="#" class="_cat" style="padding-left:10px" >Submodule: stylemap</a></li>
-                
-                        <li><a style="padding-left:20px;" href="naver.maps.StyleMapType.html">naver.maps.StyleMapType</a></li>
-                
                         
                     </ul>
                 </li>
@@ -255,14 +251,6 @@
                 
                         <li><a style="padding-left:20px;" href="naver.maps.visualization.SpectrumStyle.html">naver.maps.visualization.SpectrumStyle</a></li>
                 
-                        <li><a href="#" class="_cat" style="padding-left:10px" >Submodule: stylemap</a></li>
-                
-                        <li><a style="padding-left:20px;" href="naver.maps.StyleMapLayerId.html">naver.maps.StyleMapLayerId</a></li>
-                
-                        <li><a style="padding-left:20px;" href="naver.maps.StyleMapTypeId.html">naver.maps.StyleMapTypeId</a></li>
-                
-                        <li><a style="padding-left:20px;" href="naver.maps.StyleMapTypeOption.html">naver.maps.StyleMapTypeOption</a></li>
-                
                         
                     </ul>
                 </li>
@@ -279,7 +267,7 @@
                     <a href="modules.list.html" itemprop="mainEntityOfPage" class="dropdown-toggle dropdown-toggle-modules" data-toggle="dropdown">Modules<b class="caret"></b></a>
                     <ul class="dropdown-menu ">
                         
-                        <li><a href="module-drawing.html">drawing</a></li><li><a href="module-geocoder.html">geocoder</a></li><li><a href="module-panorama.html">panorama</a></li><li><a href="module-stylemap.html">stylemap</a></li><li><a href="module-visualization.html">visualization</a></li>
+                        <li><a href="module-drawing.html">drawing</a></li><li><a href="module-geocoder.html">geocoder</a></li><li><a href="module-panorama.html">panorama</a></li><li><a href="module-visualization.html">visualization</a></li>
                     </ul>
                 </li>
                 
@@ -296,8 +284,6 @@
                         <li><a style="padding-left:20px;" href="tutorial-3-KVO-Mechanism.html">KVO Design</a></li>
                 
                         <li><a style="padding-left:20px;" href="tutorial-4-Submodules.html">Submodule System</a></li>
-                
-                        <li><a style="padding-left:20px;" href="tutorial-Quota.html">Limitations</a></li>
                 
                         <li><a href="#" class="_cat" style="padding-left:10px" >Getting Started</a></li>
                 
@@ -362,10 +348,6 @@
                         <li><a href="#" class="_cat" style="padding-left:10px" >Drawing</a></li>
                 
                         <li><a style="padding-left:20px;" href="tutorial-Drawing.html">Basics of Creating a Drawing Tool</a></li>
-                
-                        <li><a href="#" class="_cat" style="padding-left:10px" >StyleMap</a></li>
-                
-                        <li><a style="padding-left:20px;" href="tutorial-StyleMap.html">New style map</a></li>
                 
                         
                     </ul>
@@ -571,7 +553,15 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-stylemap-options.example.html">StyleMap initialize options example</a></li>
+                        <li><a style="padding-left:20px;" href="tutorial-2-stylemap-cadastral.example.html">Displaying the cadastral map layer by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-3-stylemap-custom.example.html">Creating a custom layer by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-4-stylemap-submodule-heatmap.example.html">Visualizing a heatmap by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-5-stylemap-custom-maptypes.example.html">Creating a custom map type by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-6-stylemap-custom-control.example.html">Creating utsom controls by using the StyleMap</a></li>
                 
                         
                     </ul>
@@ -615,7 +605,7 @@
 <div class="row">
 
     
-    <div class="col-md-8">
+    <div class="col-md-12">
     
         <div id="main" itemscope itemtype="https://schema.org/TechArticle">
             <div style="display:none;">
@@ -632,229 +622,91 @@
                     <span itemprop="keywords">api</span>
                     <span itemprop="keywords">v3</span>
                     <span itemprop="keywords">네이버 지도 API</span>
-                    <span itemprop="keywords">StyleMapTypeId</span>
+                    <span itemprop="keywords">Displaying the cadastral map layer by using the StyleMap</span>
                 </div>
             </div>
-            
+            <script src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/base.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk&amp;submodules=panorama,geocoder,drawing,visualization"></script>
+<link rel="stylesheet" type="text/css" href="./css/base.css" />
 
-	<h1 class="page-title">StaticObjects: StyleMapTypeId</h1>
-<section>
-
-<header>
-    
-        <h2>
-            <span class="ancestors"><a href="naver.html">naver</a><a href="naver.maps.html">.maps</a>.</span>
-        
-        StyleMapTypeId
-        </h2>
-        
-    
-</header>
-
-
+<section class="tutorial-section">
+<header></header>
 <article>
-    <div class="container-overview">
-    
-        
-            <div class="description" itemprop="description"><p><code>StyleMapTypeId</code> 객체는 StyleMap 지도 유형 <code>id</code> 컬렉션입니다.</p></div>
-        
-
-        
-<dl class="details">
     
 
-    <h5 class="subsection-title">Properties</h5>
-
-    <dl>
-
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NORMAL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">
-    
-    <!-- <a href="global.html#string">string</a> -->
-    <a href="global.html#string">string</a>
-    </span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>일반지도 유형 id. 일반 이미지 지도를 보여주는 지도 유형입니다.</p></td>
-        </tr>
+    <h1>Displaying the cadastral map layer by using the StyleMap</h1>
 
     
 
-        <tr>
-            
-                <td class="name"><code>TERRAIN</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">
-    
-    <!-- <a href="global.html#string">string</a> -->
-    <a href="global.html#string">string</a>
-    </span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>지형지도 유형 id. 지형의 높낮이를 함께 보여주는 지도 유형입니다.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>SATELLITE</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">
-    
-    <!-- <a href="global.html#string">string</a> -->
-    <a href="global.html#string">string</a>
-    </span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>위성지도 유형 id. 위성 이미지 지도를 보여주는 지도 유형입니다.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-</dl>
-
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
+<!--  -->
+<style type="text/css">
+    #wrap .buttons { position:absolute;top:0;left:0;z-index:1000;padding:5px; }
+    #wrap .buttons .control-btn { margin:0 5px 5px 0; }
+</style>
+<div id="wrap" class="section">
+    <h2>Displaying the cadastral map layer by using the StyleMap</h2>
+    <p>This example contains jQuery code.</p>
+    <div id="map" style="width:100%;height:600px;">
+        <div class="buttons">
+            <input id="cadastral" type="button" value="지적도" class="control-btn" />
+        </div>
     </div>
+    <code id="snippet" class="snippet"></code>
+</div>
+<script id="code">
+    var map = new naver.maps.Map('map', {
+        useStyleMap: true,
+        center: new naver.maps.LatLng(37.3595704, 127.105399),
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: naver.maps.MapTypeControlStyle.DROPDOWN
+        }
+    });
 
-    
+    function startCadastralLayer() {
+        var cadastralLayer = new naver.maps.CadastralLayer({ useStyleMap: true });
 
-    
-        <h3 class="subsection-title">Requires</h3>
+        var btn = $('#cadastral');
 
-        <ul>
-            <li><a href="module-stylemap.html">module:stylemap</a></li>
-        </ul>
-    
+        naver.maps.Event.addListener(map, 'cadastralLayer_changed', function(cadastralLayer) {
+            if (cadastralLayer.getMap()) {
+                btn.addClass('control-on').val('지적도 끄기');
+            } else {
+                btn.removeClass('control-on').val('지적도 켜기');
+            }
+        });
 
-    
+        cadastralLayer.setMap(map);
 
-    
+        btn.on('click', function(e) {
+            e.preventDefault();
 
-    
+            if (cadastralLayer.getMap()) {
+                cadastralLayer.setMap(null);
+                btn.removeClass('control-on').val('지적도 켜기');
+            } else {
+                cadastralLayer.setMap(map);
+                btn.addClass('control-on').val('지적도 끄기');
+            }
+        });
+    }
 
-    
+    naver.maps.onJSContentLoaded = startCadastralLayer;
+</script>
 
-    
 
-    
 
     
 </article>
 
 </section>
 
-
-
-
         </div>
     </div>
 
     <div class="clearfix"></div>
 
-    
-        <div class="col-md-3">
-            <div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-        </div>
     
 
 </div>

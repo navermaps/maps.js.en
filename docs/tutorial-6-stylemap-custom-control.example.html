@@ -8,8 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>New style map | 네이버 지도 API v3</title>
-    <meta name="description" content="Tutorial: New style map">
+    <title>Creating utsom controls by using the StyleMap | 네이버 지도 API v3</title>
+    <meta name="description" content="Example: Creating utsom controls by using the StyleMap">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="NAVER Maps API v3 바로가기">
     <meta property="og:title" content="NAVER Maps API v3">
@@ -189,10 +189,6 @@
                 
                         <li><a style="padding-left:20px;" href="naver.maps.visualization.WeightedLocation.html">naver.maps.visualization.WeightedLocation</a></li>
                 
-                        <li><a href="#" class="_cat" style="padding-left:10px" >Submodule: stylemap</a></li>
-                
-                        <li><a style="padding-left:20px;" href="naver.maps.StyleMapType.html">naver.maps.StyleMapType</a></li>
-                
                         
                     </ul>
                 </li>
@@ -255,14 +251,6 @@
                 
                         <li><a style="padding-left:20px;" href="naver.maps.visualization.SpectrumStyle.html">naver.maps.visualization.SpectrumStyle</a></li>
                 
-                        <li><a href="#" class="_cat" style="padding-left:10px" >Submodule: stylemap</a></li>
-                
-                        <li><a style="padding-left:20px;" href="naver.maps.StyleMapLayerId.html">naver.maps.StyleMapLayerId</a></li>
-                
-                        <li><a style="padding-left:20px;" href="naver.maps.StyleMapTypeId.html">naver.maps.StyleMapTypeId</a></li>
-                
-                        <li><a style="padding-left:20px;" href="naver.maps.StyleMapTypeOption.html">naver.maps.StyleMapTypeOption</a></li>
-                
                         
                     </ul>
                 </li>
@@ -279,7 +267,7 @@
                     <a href="modules.list.html" itemprop="mainEntityOfPage" class="dropdown-toggle dropdown-toggle-modules" data-toggle="dropdown">Modules<b class="caret"></b></a>
                     <ul class="dropdown-menu ">
                         
-                        <li><a href="module-drawing.html">drawing</a></li><li><a href="module-geocoder.html">geocoder</a></li><li><a href="module-panorama.html">panorama</a></li><li><a href="module-stylemap.html">stylemap</a></li><li><a href="module-visualization.html">visualization</a></li>
+                        <li><a href="module-drawing.html">drawing</a></li><li><a href="module-geocoder.html">geocoder</a></li><li><a href="module-panorama.html">panorama</a></li><li><a href="module-visualization.html">visualization</a></li>
                     </ul>
                 </li>
                 
@@ -296,8 +284,6 @@
                         <li><a style="padding-left:20px;" href="tutorial-3-KVO-Mechanism.html">KVO Design</a></li>
                 
                         <li><a style="padding-left:20px;" href="tutorial-4-Submodules.html">Submodule System</a></li>
-                
-                        <li><a style="padding-left:20px;" href="tutorial-Quota.html">Limitations</a></li>
                 
                         <li><a href="#" class="_cat" style="padding-left:10px" >Getting Started</a></li>
                 
@@ -362,10 +348,6 @@
                         <li><a href="#" class="_cat" style="padding-left:10px" >Drawing</a></li>
                 
                         <li><a style="padding-left:20px;" href="tutorial-Drawing.html">Basics of Creating a Drawing Tool</a></li>
-                
-                        <li><a href="#" class="_cat" style="padding-left:10px" >StyleMap</a></li>
-                
-                        <li><a style="padding-left:20px;" href="tutorial-StyleMap.html">New style map</a></li>
                 
                         
                     </ul>
@@ -571,7 +553,15 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-map-stylemap.example.html">StyleMap Example</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-stylemap-options.example.html">StyleMap initialize options example</a></li>
+                        <li><a style="padding-left:20px;" href="tutorial-2-stylemap-cadastral.example.html">Displaying the cadastral map layer by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-3-stylemap-custom.example.html">Creating a custom layer by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-4-stylemap-submodule-heatmap.example.html">Visualizing a heatmap by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-5-stylemap-custom-maptypes.example.html">Creating a custom map type by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-6-stylemap-custom-control.example.html">Creating utsom controls by using the StyleMap</a></li>
                 
                         
                     </ul>
@@ -632,37 +622,68 @@
                     <span itemprop="keywords">api</span>
                     <span itemprop="keywords">v3</span>
                     <span itemprop="keywords">네이버 지도 API</span>
-                    <span itemprop="keywords">New style map</span>
+                    <span itemprop="keywords">Creating utsom controls by using the StyleMap</span>
                 </div>
             </div>
-            <link rel='stylesheet' type='text/css' href='./css/tutorial.css' />
-<section class="tutorial-section">
-<!-- <header>
-    
+            <script src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/base.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk&amp;submodules=panorama,geocoder,drawing,visualization"></script>
+<link rel="stylesheet" type="text/css" href="./css/base.css" />
 
-    <h2>New style map</h2>
-</header> -->
+<section class="tutorial-section">
 <header></header>
 <article>
     
 
-    <h1>New style map</h1>
+    <h1>Creating utsom controls by using the StyleMap</h1>
 
-    <p>The StyleMap submodule provides a new style map using EPSG3857 projection.</p>
-<p>For StyleMap examples, refer to <a href="./tutorial-digest.example.html#StyleMap">Creating a map with StyleMap</a>.</p>
-<h2>Load submodules</h2><p>To use the StyleMap service, you should load the JavaScript file of the StyleMap submodule. Load the file as in the code below.<br>This submodule requires the NAVER Maps API v3 to be loaded in advance. For more information, refer to <a href="./tutorial-4-Submodules.html">Submodule System</a>.</p>
-<blockquote>
-<p>The NAVER Maps API v3 supports both <code>http</code> and <code>https</code> protocols.</p>
-</blockquote>
-<pre class="prettyprint source lang-html"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_CLIENT_ID&submodules=stylemap&quot;>&lt;/script></code></pre><h2>StyleMap map types</h2><blockquote>
-<p>The StyleMap submodule offers three <code>map types</code>: <code>basic map</code>, <code>Terrain map</code>, and <code>satellite map</code>.  </p>
-</blockquote>
-<p>To use StyleMap map types, set the <code>mapTypes</code> option to StyleMap, and specify the <code>id</code> of the StyleMap map type you want to show in <code>mapTypeId</code> when initializing the map.</p>
-<pre class="prettyprint source lang-js"><code>var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(37.3595704, 127.105399),
-    mapTypes: naver.maps.StyleMapTypeOption.getMapTypes(),
-    mapTypeId: naver.maps.StyleMapTypeId.NORMAL
-});</code></pre><h2>StyleMap map projection</h2><p>The StyleMap submodule uses <code>EPSG3857</code> by default.</p>
+    
+
+<!--  -->
+<style>
+    #wrap .btn_mylct{z-index:100;overflow:hidden;display:inline-block;position:absolute;top:7px;left:5px;width:34px;height:34px;border:1px solid rgba(58,70,88,.45);border-radius:2px;background:#fcfcfd;text-align:center;-webkit-background-clip:padding;background-clip:padding-box}
+    #wrap .spr_trff{overflow:hidden;display:inline-block;color:transparent!important;vertical-align:top;background:url(https://ssl.pstatic.net/static/maps/m/spr_trff_v6.png) 0 0;background-size:200px 200px;-webkit-background-size:200px 200px}
+    #wrap .spr_ico_mylct{width:20px;height:20px;margin:7px 0 0 0;background-position:-153px -31px}
+</style>
+<div id="wrap" class="section">
+    <h2>Creating utsom controls by using the StyleMap</h2>
+    <p>This example contains jQuery code.</p>
+    <div id="map" style="width:100%;height:600px;"></div>
+    <code id="snippet" class="snippet"></code>
+</div>
+<script id="code">
+    var locationBtnHtml = '<a href="#" class="btn_mylct"><span class="spr_trff spr_ico_mylct">NAVER 그린팩토리</span></a>';
+    var map = new naver.maps.Map('map', {
+        useStyleMap: true,
+        zoom: 13
+    });
+
+    naver.maps.onJSContentLoaded = function() {
+        //customControl 객체 이용하기
+        var customControl = new naver.maps.CustomControl(locationBtnHtml, {
+            position: naver.maps.Position.TOP_LEFT
+        });
+
+        customControl.setMap(map);
+
+        var domEventListener = naver.maps.Event.addDOMListener(customControl.getElement(), 'click', function() {
+            map.setCenter(new naver.maps.LatLng(37.3595953, 127.1053971));
+        });
+
+        //Map 객체의 controls 활용하기
+        var $locationBtn = $(locationBtnHtml),
+            locationBtnEl = $locationBtn[0];
+
+        map.controls[naver.maps.Position.LEFT_CENTER].push(locationBtnEl);
+
+        var domEventListener = naver.maps.Event.addDOMListener(locationBtnEl, 'click', function() {
+            map.setCenter(new naver.maps.LatLng(37.3595953, 127.1553971));
+        });
+    };
+
+</script>
+
+
 
     
 </article>
