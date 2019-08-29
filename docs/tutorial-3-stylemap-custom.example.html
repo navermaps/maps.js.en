@@ -561,7 +561,9 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-5-stylemap-custom-maptypes.example.html">Creating a custom map type by using the StyleMap</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-6-stylemap-custom-control.example.html">Creating utsom controls by using the StyleMap</a></li>
+                        <li><a style="padding-left:20px;" href="tutorial-6-stylemap-custom-control.example.html">Creating cutsom controls by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-7-stylemap-repeatX.example.html">Setting MapTypOption repeatX</a></li>
                 
                         
                     </ul>
@@ -655,33 +657,33 @@
     <code id="snippet" class="snippet"></code>
 </div>
 <script id="code">
-    var map = new naver.maps.Map('map', {
-        useStyleMap: true,
-        center: new naver.maps.LatLng(37.3595704, 127.105399),
-        mapTypes: new naver.maps.MapTypeRegistry({
-            'normal': naver.maps.NaverStyleMapTypeOption.getVectorMap()
-        })
-    });
+var map = new naver.maps.Map('map', {
+    useStyleMap: true,
+    center: new naver.maps.LatLng(37.3595704, 127.105399),
+    mapTypes: new naver.maps.MapTypeRegistry({
+        'normal': naver.maps.NaverStyleMapTypeOption.getVectorMap()
+    })
+});
 
-    var labelMapType = new naver.maps.NaverStyleMapTypeOption.getNormalLabelLayer();
-    var labelMapTypeRegistry = new naver.maps.MapTypeRegistry({
-        'label': labelMapType
-    });
-    var labelLayer = new naver.maps.Layer('label', labelMapTypeRegistry);
+var labelMapType = new naver.maps.NaverStyleMapTypeOption.getNormalLabelLayer();
+var labelMapTypeRegistry = new naver.maps.MapTypeRegistry({
+    'label': labelMapType
+});
+var labelLayer = new naver.maps.Layer('label', labelMapTypeRegistry);
 
-    $('#labelLayer').on('click', function(e) {
-        e.preventDefault();
+$('#labelLayer').on('click', function(e) {
+    e.preventDefault();
 
-        var btn = $(this);
+    var btn = $(this);
 
-        if (labelLayer.getMap()) {
-            labelLayer.setMap(null);
-            btn.removeClass('control-on').val('POI 켜기');
-        } else {
-            labelLayer.setMap(map);
-            btn.addClass('control-on').val('POI 끄기');
-        }
-    });
+    if (labelLayer.getMap()) {
+        labelLayer.setMap(null);
+        btn.removeClass('control-on').val('POI 켜기');
+    } else {
+        labelLayer.setMap(map);
+        btn.addClass('control-on').val('POI 끄기');
+    }
+});
 </script>
 
 

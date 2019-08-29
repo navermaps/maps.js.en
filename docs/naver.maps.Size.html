@@ -561,7 +561,9 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-5-stylemap-custom-maptypes.example.html">Creating a custom map type by using the StyleMap</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-6-stylemap-custom-control.example.html">Creating utsom controls by using the StyleMap</a></li>
+                        <li><a style="padding-left:20px;" href="tutorial-6-stylemap-custom-control.example.html">Creating cutsom controls by using the StyleMap</a></li>
+                
+                        <li><a style="padding-left:20px;" href="tutorial-7-stylemap-repeatX.example.html">Setting MapTypOption repeatX</a></li>
                 
                         
                     </ul>
@@ -836,7 +838,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="add"><span class="type-signature"></span>add(width, height)</h4>
+    <h4 class="name" id="add"><span class="type-signature"></span>add(size)</h4>
 
     
 </dt>
@@ -844,7 +846,7 @@
 
     
     <div class="description">
-        <p><code>Size</code> 객체의 너비와 높이에 지정한 수치를 더합니다.</p>
+        <p><code>Size</code> 객체의 너비와 높이에 지정한 <code>Size</code> 객체의 너비와 높이를 더합니다.</p>
     </div>
     
 
@@ -879,7 +881,7 @@
 
         <tr>
             
-                <td class="name"><code>width</code></td>
+                <td class="name"><code>size</code></td>
             
 
             <td class="type">
@@ -887,8 +889,15 @@
                 
 <span class="param-type">
     
-    <!-- <a href="global.html#number">number</a> -->
-    <a href="global.html#number">number</a>
+    <!-- <a href="naver.maps.Size.html">naver.maps.Size</a> -->
+    <a href="naver.maps.Size.html">naver.maps.Size</a>
+    </span>
+|
+
+<span class="param-type">
+    
+    <!-- <a href="global.html#SizeLiteral">SizeLiteral</a> -->
+    <a href="global.html#SizeLiteral">SizeLiteral</a>
     </span>
 
 
@@ -900,35 +909,7 @@
 
             
 
-            <td class="description last"><p>너비</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">
-    
-    <!-- <a href="global.html#number">number</a> -->
-    <a href="global.html#number">number</a>
-    </span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>높이</p></td>
+            <td class="description last"><p>더할 <code>Size</code> 객체</p></td>
         </tr>
 
     
@@ -1058,7 +1039,7 @@
         
             
 <dt>
-    <h4 class="name" id="add"><span class="type-signature"></span>add(size)</h4>
+    <h4 class="name" id="add"><span class="type-signature"></span>add(width, height)</h4>
 
     
 </dt>
@@ -1066,7 +1047,7 @@
 
     
     <div class="description">
-        <p><code>Size</code> 객체의 너비와 높이에 지정한 <code>Size</code> 객체의 너비와 높이를 더합니다.</p>
+        <p><code>Size</code> 객체의 너비와 높이에 지정한 수치를 더합니다.</p>
     </div>
     
 
@@ -1101,7 +1082,7 @@
 
         <tr>
             
-                <td class="name"><code>size</code></td>
+                <td class="name"><code>width</code></td>
             
 
             <td class="type">
@@ -1109,15 +1090,8 @@
                 
 <span class="param-type">
     
-    <!-- <a href="naver.maps.Size.html">naver.maps.Size</a> -->
-    <a href="naver.maps.Size.html">naver.maps.Size</a>
-    </span>
-|
-
-<span class="param-type">
-    
-    <!-- <a href="global.html#SizeLiteral">SizeLiteral</a> -->
-    <a href="global.html#SizeLiteral">SizeLiteral</a>
+    <!-- <a href="global.html#number">number</a> -->
+    <a href="global.html#number">number</a>
     </span>
 
 
@@ -1129,7 +1103,35 @@
 
             
 
-            <td class="description last"><p>더할 <code>Size</code> 객체</p></td>
+            <td class="description last"><p>너비</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">
+    
+    <!-- <a href="global.html#number">number</a> -->
+    <a href="global.html#number">number</a>
+    </span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>높이</p></td>
         </tr>
 
     
@@ -2303,7 +2305,7 @@
         
             
 <dt>
-    <h4 class="name" id="mul"><span class="type-signature"></span>mul(size)</h4>
+    <h4 class="name" id="mul"><span class="type-signature"></span>mul(width, height)</h4>
 
     
 </dt>
@@ -2311,7 +2313,7 @@
 
     
     <div class="description">
-        <p><code>Size</code> 객체의 너비와 높이에 지정한 <code>Size</code> 객체의 너비와 높이를 곱합니다.</p>
+        <p><code>Size</code> 객체의 너비와 높이에 지정한 수치를 곱합니다.</p>
     </div>
     
 
@@ -2346,7 +2348,7 @@
 
         <tr>
             
-                <td class="name"><code>size</code></td>
+                <td class="name"><code>width</code></td>
             
 
             <td class="type">
@@ -2354,15 +2356,8 @@
                 
 <span class="param-type">
     
-    <!-- <a href="naver.maps.Size.html">naver.maps.Size</a> -->
-    <a href="naver.maps.Size.html">naver.maps.Size</a>
-    </span>
-|
-
-<span class="param-type">
-    
-    <!-- <a href="global.html#SizeLiteral">SizeLiteral</a> -->
-    <a href="global.html#SizeLiteral">SizeLiteral</a>
+    <!-- <a href="global.html#number">number</a> -->
+    <a href="global.html#number">number</a>
     </span>
 
 
@@ -2374,7 +2369,35 @@
 
             
 
-            <td class="description last"><p>곱할 <code>Size</code> 객체</p></td>
+            <td class="description last"><p>너비</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">
+    
+    <!-- <a href="global.html#number">number</a> -->
+    <a href="global.html#number">number</a>
+    </span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>높이</p></td>
         </tr>
 
     
@@ -2504,7 +2527,7 @@
         
             
 <dt>
-    <h4 class="name" id="mul"><span class="type-signature"></span>mul(width, height)</h4>
+    <h4 class="name" id="mul"><span class="type-signature"></span>mul(size)</h4>
 
     
 </dt>
@@ -2512,7 +2535,7 @@
 
     
     <div class="description">
-        <p><code>Size</code> 객체의 너비와 높이에 지정한 수치를 곱합니다.</p>
+        <p><code>Size</code> 객체의 너비와 높이에 지정한 <code>Size</code> 객체의 너비와 높이를 곱합니다.</p>
     </div>
     
 
@@ -2547,7 +2570,7 @@
 
         <tr>
             
-                <td class="name"><code>width</code></td>
+                <td class="name"><code>size</code></td>
             
 
             <td class="type">
@@ -2555,8 +2578,15 @@
                 
 <span class="param-type">
     
-    <!-- <a href="global.html#number">number</a> -->
-    <a href="global.html#number">number</a>
+    <!-- <a href="naver.maps.Size.html">naver.maps.Size</a> -->
+    <a href="naver.maps.Size.html">naver.maps.Size</a>
+    </span>
+|
+
+<span class="param-type">
+    
+    <!-- <a href="global.html#SizeLiteral">SizeLiteral</a> -->
+    <a href="global.html#SizeLiteral">SizeLiteral</a>
     </span>
 
 
@@ -2568,35 +2598,7 @@
 
             
 
-            <td class="description last"><p>너비</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">
-    
-    <!-- <a href="global.html#number">number</a> -->
-    <a href="global.html#number">number</a>
-    </span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>높이</p></td>
+            <td class="description last"><p>곱할 <code>Size</code> 객체</p></td>
         </tr>
 
     
@@ -2866,7 +2868,7 @@
         
             
 <dt>
-    <h4 class="name" id="sub"><span class="type-signature"></span>sub(size)</h4>
+    <h4 class="name" id="sub"><span class="type-signature"></span>sub(width, height)</h4>
 
     
 </dt>
@@ -2874,7 +2876,7 @@
 
     
     <div class="description">
-        <p><code>Size</code> 객체의 너비와 높이에서 지정한 <code>Size</code> 객체의 너비와 높이를 뺍니다.</p>
+        <p><code>Size</code> 객체의 너비와 높이에서 지정한 수치를 뺍니다.</p>
     </div>
     
 
@@ -2909,7 +2911,7 @@
 
         <tr>
             
-                <td class="name"><code>size</code></td>
+                <td class="name"><code>width</code></td>
             
 
             <td class="type">
@@ -2917,15 +2919,8 @@
                 
 <span class="param-type">
     
-    <!-- <a href="naver.maps.Size.html">naver.maps.Size</a> -->
-    <a href="naver.maps.Size.html">naver.maps.Size</a>
-    </span>
-|
-
-<span class="param-type">
-    
-    <!-- <a href="global.html#SizeLiteral">SizeLiteral</a> -->
-    <a href="global.html#SizeLiteral">SizeLiteral</a>
+    <!-- <a href="global.html#number">number</a> -->
+    <a href="global.html#number">number</a>
     </span>
 
 
@@ -2937,7 +2932,35 @@
 
             
 
-            <td class="description last"><p>뺄 <code>Size</code> 객체</p></td>
+            <td class="description last"><p>너비</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">
+    
+    <!-- <a href="global.html#number">number</a> -->
+    <a href="global.html#number">number</a>
+    </span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>높이</p></td>
         </tr>
 
     
@@ -3067,7 +3090,7 @@
         
             
 <dt>
-    <h4 class="name" id="sub"><span class="type-signature"></span>sub(width, height)</h4>
+    <h4 class="name" id="sub"><span class="type-signature"></span>sub(size)</h4>
 
     
 </dt>
@@ -3075,7 +3098,7 @@
 
     
     <div class="description">
-        <p><code>Size</code> 객체의 너비와 높이에서 지정한 수치를 뺍니다.</p>
+        <p><code>Size</code> 객체의 너비와 높이에서 지정한 <code>Size</code> 객체의 너비와 높이를 뺍니다.</p>
     </div>
     
 
@@ -3110,7 +3133,7 @@
 
         <tr>
             
-                <td class="name"><code>width</code></td>
+                <td class="name"><code>size</code></td>
             
 
             <td class="type">
@@ -3118,8 +3141,15 @@
                 
 <span class="param-type">
     
-    <!-- <a href="global.html#number">number</a> -->
-    <a href="global.html#number">number</a>
+    <!-- <a href="naver.maps.Size.html">naver.maps.Size</a> -->
+    <a href="naver.maps.Size.html">naver.maps.Size</a>
+    </span>
+|
+
+<span class="param-type">
+    
+    <!-- <a href="global.html#SizeLiteral">SizeLiteral</a> -->
+    <a href="global.html#SizeLiteral">SizeLiteral</a>
     </span>
 
 
@@ -3131,35 +3161,7 @@
 
             
 
-            <td class="description last"><p>너비</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">
-    
-    <!-- <a href="global.html#number">number</a> -->
-    <a href="global.html#number">number</a>
-    </span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>높이</p></td>
+            <td class="description last"><p>뺄 <code>Size</code> 객체</p></td>
         </tr>
 
     
