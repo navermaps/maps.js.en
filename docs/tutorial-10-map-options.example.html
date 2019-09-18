@@ -658,10 +658,10 @@ var map = new naver.maps.Map('map', {
 });
 
 map.setOptions('minZoom', 10);
-console.log('잘못된 참조 시점', map.getOptions('minZoom') === 10);
+console.log('You should not refer to an attribute at this point.', map.getOptions('minZoom') === 10);
 
 naver.maps.Event.once(map, 'init_stylemap', function () {
-    console.log('올바른 참조 시점', map.getOptions('minZoom') === 10);
+    console.log('You must reference the property at this point.', map.getOptions('minZoom') === 10);
 });
 </script>
 
