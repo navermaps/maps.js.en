@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -670,9 +668,7 @@
     <code id="snippet" class="snippet"></code>
 </div>
 <script id="code">
-// Image map type of the UTMK_NAVER projection
-var naverNormalMapType = naver.maps.NaverMapTypeOption.getNormalMap();
-// Image map type of the EPSG3857 projection
+var naverNormalMapType = naver.maps.NaverStyleMapTypeOption.getNormalMap();
 var openStreetMapType = new naver.maps.ImageMapType({
     name: 'OSM',
     minZoom: 0,
@@ -691,15 +687,14 @@ var openStreetMapType = new naver.maps.ImageMapType({
     }]
 });
 
-// Create a map composed of two types of maps (mapType).
+// 두 개의 mapType으로 된 지도를 생성합니다.
 var map = new naver.maps.Map('map', {
     center: new naver.maps.LatLng(37.3595704, 127.105399),
-    zoom: 2,
     mapTypes: new naver.maps.MapTypeRegistry({
         'naver': naverNormalMapType,
         'osm': openStreetMapType
     }),
-    mapTypeId: 'naver', // id of an initial map type
+    mapTypeId: 'naver', //지도의 초기 지도 유형 id
     mapTypeControl: true,
     mapTypeControlOptions: {
         style: naver.maps.MapTypeControlStyle.BUTTON
@@ -722,7 +717,7 @@ $('#radio-wrap input').on('click', function(e) {
     function changeTileSize(mapType, tileSize) {
         var opts = mapType.getMapTypeOptions();
 
-        opts.tileSize = tileSize; // Resize tiles.
+        opts.tileSize = tileSize; // 타일 크기를 변경합니다.
         mapType.setMapTypeOptions(opts);
     }
 
@@ -732,33 +727,6 @@ $('#radio-wrap input').on('click', function(e) {
     stopNotify = true;
     map.refresh(true);
     stopNotify = false;
-});
-
-var idleListener = null;
-
-naver.maps.Event.addListener(map, 'mapTypeId_changed', function(mapTypeId) {
-    if (stopNotify) return;
-
-    naver.maps.Event.removeListener(idleListener);
-
-    var curZoom = map.getZoom(),
-        toZoom = curZoom;
-
-    if (mapTypeId === 'osm') {
-        toZoom += 5;
-    } else if (mapTypeId === 'naver') {
-        toZoom -= 5;
-    }
-
-    idleListener = naver.maps.Event.once(map, 'idle', function() {
-        naver.maps.Event.removeListener(idleListener);
-
-        var zoom = map.getZoom();
-
-        if (zoom !== toZoom) {
-            map.setZoom(toZoom);
-        }
-    });
 });
 </script>
 

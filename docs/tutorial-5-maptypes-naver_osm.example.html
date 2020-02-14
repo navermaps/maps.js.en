@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -671,7 +669,7 @@ var openStreetMapType = new naver.maps.ImageMapType({
 
 var map = new naver.maps.Map('map', {
     center: new naver.maps.LatLng(37.3595704, 127.105399),
-    zoom: 2,
+    zoom: 7,
     mapTypeControl: true,
     mapTypeControlOptions: {
         style: naver.maps.MapTypeControlStyle.BUTTON
@@ -681,8 +679,8 @@ var map = new naver.maps.Map('map', {
 map.mapTypes.set('osm', openStreetMapType);
 
 var korea = new naver.maps.LatLngBounds(
-        new naver.maps.LatLng(30.1391277, 115.0607471),
-        new naver.maps.LatLng(48.940448, 139.7803655));
+    new naver.maps.LatLng(30.1391277, 115.0607471),
+    new naver.maps.LatLng(48.940448, 139.7803655));
 
 var listener = null,
     projectionChanged = false;
@@ -715,20 +713,6 @@ function unlisten() {
     naver.maps.Event.removeListener(listener);
     listener = null;
 }
-
-naver.maps.Event.addListener(map, 'projection_changed', function(projection) {
-    unlisten();
-
-    projectionChanged = true;
-
-    if (projection === naver.maps.EPSG3857) {
-        map.zoomBy(5);
-    } else if (projection === naver.maps.UTMK_NAVER) {
-        map.zoomBy(-5);
-    }
-
-    listen();
-});
 
 naver.maps.Event.addListener(map, 'zooming', function(e) {
     unlisten();

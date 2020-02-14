@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -676,10 +674,12 @@
     new naver.maps.LatLng(38.70,127.9)
 ];
 
-var heatmap = new naver.maps.visualization.HeatMap({
-    map: map,
-    data: data
-});
+naver.maps.onJSContentLoaded = function() {
+    var heatmap = new naver.maps.visualization.HeatMap({
+        map: map,
+        data: data
+    });
+};
 </code></pre>
 <p><strong>Examples</strong>: <a href="tutorial-1-visualization-heatmap.example.html">Visualizing a heatmap</a></p>
 <h2>Using dot density maps</h2>
@@ -697,10 +697,12 @@ var heatmap = new naver.maps.visualization.HeatMap({
     new naver.maps.LatLng(38.70,127.9)
 ];
 
-var dotmap = new naver.maps.visualization.DotMap({
-    map: map,
-    data: data
-});
+naver.maps.onJSContentLoaded = function() {
+    var dotmap = new naver.maps.visualization.DotMap({
+        map: map,
+        data: data
+    });
+};
 </code></pre>
 <p><strong>Examples</strong>: <a href="tutorial-2-visualization-dotmap.example.html">Visualizing a dot density map</a></p>
 <h2>Applying weights</h2>

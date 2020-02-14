@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -710,17 +708,40 @@
     var HOME_PATH = window.HOME_PATH || '.';
 </script>
 <script id="code">
-    var map = new naver.maps.Map('map', {
-        zoomControl: true,
-        zoomControlOptions: {
-            style: naver.maps.ZoomControlStyle.LARGE,
-            position: naver.maps.Position.TOP_RIGHT
-        },
-        mapTypeControl: true,
-        zoom: 2
-    });
+var map = new naver.maps.Map('map', {
+    zoomControl: true,
+    zoomControlOptions: {
+        style: naver.maps.ZoomControlStyle.LARGE,
+        position: naver.maps.Position.TOP_RIGHT
+    },
+    mapTypeControl: true,
+    zoom: 7
+});
 
-    var drawingManager = new naver.maps.drawing.DrawingManager({
+// Add an overlay to manager.
+var rect = new naver.maps.Rectangle({
+    map: map,
+    bounds: [125.6195858,37.1928595,126.5689034,37.8594302],
+    fillColor: '#00bf46',
+    fillOpacity: 0.4,
+    strokeWeight: 2,
+    strokeColor: '#00bf46'
+});
+
+// Directly call setEditable of an overlay.
+var rect2 = new naver.maps.Rectangle({
+    map: map,
+    bounds: [124.2220128,37.1928595,125.1587723,37.8594302],
+    fillColor: '#bf0091',
+    fillOpacity: 0.4,
+    strokeWeight: 2,
+    strokeColor: '#bf0091'
+});
+rect2.setEditable(true);
+
+var drawingManager;
+naver.maps.Event.once(map, 'init_stylemap', function () {
+    drawingManager = new naver.maps.drawing.DrawingManager({
         map: map,
         drawingControl: [
             naver.maps.drawing.DrawingMode.POLYLINE,
@@ -786,33 +807,11 @@
 
     // Adjust map options.
     drawingManager.setOptions('drawingControlOptions', {position: naver.maps.Position.RIGHT_CENTER});
-
-    // Add an overlay to manager.
-    var rect = new naver.maps.Rectangle({
-            map: map,
-            bounds: [125.6195858,37.1928595,126.5689034,37.8594302],
-            fillColor: '#00bf46',
-            fillOpacity: 0.4,
-            strokeWeight: 2,
-            strokeColor: '#00bf46'
-        });
-
     drawingManager.addDrawing(rect, naver.maps.drawing.DrawingMode.RECTANGLE, 'my-id');
-
-    // Directly call setEditable of an overlay.
-    var rect2 = new naver.maps.Rectangle({
-            map: map,
-            bounds: [124.2220128,37.1928595,125.1587723,37.8594302],
-            fillColor: '#bf0091',
-            fillOpacity: 0.4,
-            strokeWeight: 2,
-            strokeColor: '#bf0091'
-        });
-
-    rect2.setEditable(true);
-
+});
 </script>
 <script type="text/javascript">
+naver.maps.Event.once(map, 'init_stylemap', function () {
     var dm = drawingManager;
 
     $('#position_panel input[type=radio]').change(function() {
@@ -845,7 +844,7 @@
             $('#icons_panel input:checkbox').prop('checked', true);
         }
     });
-
+});
 </script>
 
 

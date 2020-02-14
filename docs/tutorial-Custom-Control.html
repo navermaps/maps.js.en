@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -654,7 +652,9 @@ var customControl = new naver.maps.CustomControl(locationBtnHtml, {
 
 var map = new naver.maps.Map('map', {});
 
-customControl.setMap(map);
+naver.maps.Event.once(map, 'init_stylemap', function() {
+    customControl.setMap(map);
+});
 </code></pre>
 <h3>Using the controls property of the Map object</h3>
 <pre class="prettyprint source lang-js"><code>var $locationBtn = $('&lt;div style=&quot;position: absolute; left: 0px; top: 0px;&quot;>&lt;a href=&quot;#&quot; class=&quot;btn_mylct&quot;>&lt;span class=&quot;spr_trff spr_ico_mylct&quot;>NAVER GREEN FACTORY&lt;/span>&lt;/a>&lt;/div>'),
@@ -662,7 +662,9 @@ customControl.setMap(map);
 
 var map = new naver.maps.Map(&quot;map&quot;, {});
 
-map.controls[naver.maps.Position.TOP_LEFT].push(locationBtnEl);
+naver.maps.Event.once(map, 'init_stylemap', function() {
+    map.controls[naver.maps.Position.TOP_LEFT].push(locationBtnEl);
+});
 </code></pre>
 <blockquote>
 <p>This example contains jQuery code.</p>
@@ -679,10 +681,12 @@ var customControl = new naver.maps.CustomControl(locationBtnHtml, {
 
 var map = new naver.maps.Map('map', {});
 
-customControl.setMap(map);
+naver.maps.Event.once(map, 'init_stylemap', function() {
+    customControl.setMap(map);
 
-var domEventListener = naver.maps.Event.addDOMListener(customControl.getElement(), 'click', function() {
-    map.setCenter(new naver.maps.LatLng(37.3595953, 127.1053971));
+    naver.maps.Event.addDOMListener(customControl.getElement(), 'click', function() {
+        map.setCenter(new naver.maps.LatLng(37.3595953, 127.1053971));
+    });
 });
 </code></pre>
 <p><strong>Examples</strong>: <a href="tutorial-4-control-custom-p1.example.html">Creating cutsom controls</a></p>
@@ -692,10 +696,12 @@ var domEventListener = naver.maps.Event.addDOMListener(customControl.getElement(
 
 var map = new naver.maps.Map(&quot;map&quot;, {});
 
-map.controls[naver.maps.Position.TOP_LEFT].push(locationBtnEl);
+naver.maps.Event.once(map, 'init_stylemap', function() {
+    map.controls[naver.maps.Position.TOP_LEFT].push(locationBtnEl);
 
-var domEventListener = naver.maps.Event.addDOMListener(locationBtnEl, 'click', function() {
-    map.setCenter(new naver.maps.LatLng(37.3595953, 127.1053971));
+    naver.maps.Event.addDOMListener(locationBtnEl, 'click', function() {
+        map.setCenter(new naver.maps.LatLng(37.3595953, 127.1053971));
+    });
 });
 </code></pre>
 <blockquote>

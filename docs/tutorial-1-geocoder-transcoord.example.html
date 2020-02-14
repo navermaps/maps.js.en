@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -658,11 +656,15 @@
 
 var map = new naver.maps.Map("map", {
         center: new naver.maps.LatLng(37.5666103, 126.9783882),
-        zoom: 11
+        zoom: 16
     }),
     infoWindow = null;
 
 function initGeocoder() {
+    if (!map.isStyleMapReady) {
+        return;
+    }
+
     var latlng = map.getCenter();
     var utmk = naver.maps.TransCoord.fromLatLngToUTMK(latlng); // latitude/longitude -> UTMK
     var tm128 = naver.maps.TransCoord.fromUTMKToTM128(utmk);   // UTMK -> TM128
@@ -699,6 +701,7 @@ function initGeocoder() {
 }
 
 naver.maps.onJSContentLoaded = initGeocoder;
+naver.maps.Event.once(map, 'init_stylemap', initGeocoder);
 </script>
 
 

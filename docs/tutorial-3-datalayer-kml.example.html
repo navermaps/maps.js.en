@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -651,17 +649,19 @@
 </div>
 <script id="code">
 var map = new naver.maps.Map(document.getElementById('map'), {
-    zoom: 7,
+    zoom: 12,
     mapTypeId: 'normal',
     center: new naver.maps.LatLng(38.1361378, 128.4021238)
 });
 
 var HOME_PATH = window.HOME_PATH || '.';
 
-$.ajax({
-    url: HOME_PATH +'/data/seorak.kml',
-    dataType: 'xml',
-    success: startDataLayer
+naver.maps.Event.once(map, 'init_stylemap', function () {
+    $.ajax({
+        url: HOME_PATH +'/data/seorak.kml',
+        dataType: 'xml',
+        success: startDataLayer
+    });
 });
 
 function startDataLayer(xmlDoc) {

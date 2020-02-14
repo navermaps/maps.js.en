@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -656,10 +654,12 @@ var streetLayer = new naver.maps.StreetLayer();
 var bicycleLayer = new naver.maps.BicycleLayer();
 var trafficLayer = new naver.maps.TrafficLayer();
 
-cadastralLayer.setMap(map);
-streetLayer.setMap(map);
-bicycleLayer.setMap(map);
-trafficLayer.setMap(map);
+naver.maps.Event.once(map, 'init_stylemap', function() {
+    cadastralLayer.setMap(map);
+    streetLayer.setMap(map);
+    bicycleLayer.setMap(map);
+    trafficLayer.setMap(map);
+});
 </code></pre>
 <p><strong>Examples</strong>: <a href="tutorial-1-bicycle.example.html">Displaying the NAVER bicycle layer</a> <br><br>
 <strong>Examples</strong>: <a href="tutorial-2-cadastral.example.html">Displaying the NAVER cadastral map layer</a> <br><br>

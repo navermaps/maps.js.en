@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -669,32 +667,6 @@ var tm128 = naver.maps.TransCoord.fromUTMKToTM128(utmk);   // UTMK -> TM128
 var naverCoord = naver.maps.TransCoord.fromTM128ToNaver(tm128); // TM128 -> NAVER
 </code></pre>
 <p><strong>Examples</strong>: <a href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></p>
-<h2>Use expanded projection objects</h2>
-<p>The projection object provided by the NAVER Maps API v3 uses the LatLng coordinate system by default.<br>
-Geocoder, however, offers projection objects that use plane coordinate systems other than the LatLng coordinate system, as the default coordinate system.<br>
-For example, if your map type uses the <code>naver.maps.TM128Coord</code> projection object, the <code>TM128</code> coordinate system is used for its input/output coordinates.</p>
-<h3>TM128Coord projection object</h3>
-<pre class="prettyprint source lang-js"><code>var map = new naver.maps.Map('map-container', {
-    center:  new naver.maps.Point(309852, 552189), // TM128
-    zoom: 11,
-    mapTypeId: 'normal',
-    mapTypes: new naver.maps.MapTypeRegistry({
-        'normal': naver.maps.NaverMapTypeOption.getNormalMap({
-            projection: naver.maps.TM128Coord
-        }),
-        'terrain': naver.maps.NaverMapTypeOption.getTerrainMap({
-            projection: naver.maps.TM128Coord
-        }),
-        'satellite': naver.maps.NaverMapTypeOption.getSatelliteMap({
-            projection: naver.maps.TM128Coord
-        }),
-        'hybrid': naver.maps.NaverMapTypeOption.getHybridMap({
-            projection: naver.maps.TM128Coord
-        })
-    })
-});
-</code></pre>
-<p><strong>Examples</strong>: <a href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></p>
 
     
 </article>

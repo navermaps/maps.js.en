@@ -537,8 +537,6 @@
                 
                         <li><a style="padding-left:20px;" href="tutorial-1-geocoder-transcoord.example.html">Converting between coordinate systems</a></li>
                 
-                        <li><a style="padding-left:20px;" href="tutorial-2-geocoder-tm128coord.example.html">Using TM128 plane coordinates projection</a></li>
-                
                         <li><a style="padding-left:20px;" href="tutorial-3-geocoder-geocoding.example.html">Using the geocode/reverse geocode APIs</a></li>
                 
                         <li><a href="tutorial-digest.example.html#Drawing" class="_cat" style="padding-left:10px" >Drawing</a></li>
@@ -677,8 +675,8 @@
 </blockquote>
 <h3>Map type repository</h3>
 <p>As described above, several map types including basic and satellite are available. To manage those map types, the NAVER Maps API v3 uses a <code>MapTypeRegistry</code> object, which is a map type repository.</p>
-<p>The map type repository manages a collection of <code>MapType</code> objects, and you can use the factory methods provided by the <code>NaverMapTypeOptions</code> object to access the default map types provided by the NAVER Maps API v3.</p>
-<pre class="prettyprint source lang-js"><code>naver.maps.NaverMapTypeOption.getNormalMap();
+<p>The map type repository manages a collection of <code>MapType</code> objects, and you can use the factory methods provided by the <code>NaverStyleMapTypeOption</code> object to access the default map types provided by the NAVER Maps API v3.</p>
+<pre class="prettyprint source lang-js"><code>naver.maps.NaverStyleMapTypeOption.getNormalMap();
 </code></pre>
 <p>The following code example adds only the specified map types (satellite and hybrid). If you try to use a map type that is not added, an error occurs.</p>
 <pre class="prettyprint source lang-js"><code>var registry = new naver.maps.MapTypeRegistry();
@@ -688,8 +686,8 @@ var map = new naver.maps.Map('map', {
     mapTypeId: naver.maps.MapTypeId.SATELLITE
 });
 
-map.mapTypes.set(naver.maps.MapTypeId.SATELLITE, naver.maps.NaverMapTypeOption.getSatelliteMap());
-map.mapTypes.set(naver.maps.MapTypeId.HYBRID, naver.maps.NaverMapTypeOption.getHybridMap());
+map.mapTypes.set(naver.maps.MapTypeId.SATELLITE, naver.maps.NaverStyleMapTypeOption.getSatelliteMap());
+map.mapTypes.set(naver.maps.MapTypeId.HYBRID, naver.maps.NaverStyleMapTypeOption.getHybridMap());
 
 map.setMapTypeId(naver.maps.MapTypeId.NORMAL); // error thrown
 </code></pre>
