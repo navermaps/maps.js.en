@@ -671,7 +671,7 @@ var map = new naver.maps.Map('map', {
 });
 
 var trafficLayer = new naver.maps.TrafficLayer({
-    interval: 2000 // Refresh every 2 seconds.
+    interval: 300000 // Refresh every 5 minutes. (Minimum value 5 minutes)
 });
 
 var btn = $('#traffic');
@@ -855,7 +855,7 @@ $( function () {
 <script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">
     if (!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "ab0d1ce292d4cc";
+    wcs_add["wa"] = "53b307104c05f0";
     wcs_do();
 </script>
 </body>
