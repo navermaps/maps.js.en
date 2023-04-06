@@ -8,7 +8,8 @@
     <script src="../../docs/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../docs/js/examples-base.js"></script>
     <script type="text/javascript" src="../../docs/js/highlight.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=orK7_YeBAdN64OJ8HUVz&amp;submodules=geocoder"></script>
+    
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk&submodules=geocoder"></script>
     <link rel="stylesheet" type="text/css" href="../../docs/css/examples-base.css" />
 </head>
 <body>
@@ -126,10 +127,6 @@ function searchAddressToCoordinate(address) {
 }
 
 function initGeocoder() {
-    if (!map.isStyleMapReady) {
-        return;
-    }
-
     map.addListener('click', function(e) {
         searchCoordinateToAddress(e.coord);
     });
@@ -226,7 +223,6 @@ function hasAddition (addition) {
 }
 
 naver.maps.onJSContentLoaded = initGeocoder;
-naver.maps.Event.once(map, 'init_stylemap', initGeocoder);
 </script>
 
 </body>

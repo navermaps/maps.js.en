@@ -8,7 +8,8 @@
     <script src="../../docs/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../docs/js/examples-base.js"></script>
     <script type="text/javascript" src="../../docs/js/highlight.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=orK7_YeBAdN64OJ8HUVz&amp;submodules=panorama"></script>
+    
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk"></script>
     <link rel="stylesheet" type="text/css" href="../../docs/css/examples-base.css" />
 </head>
 <body>
@@ -42,7 +43,7 @@
     <code id="snippet" class="snippet"></code>
 </div>
 <script id="code">
-var naverNormalMapType = naver.maps.NaverStyleMapTypeOption.getNormalMap();
+var naverNormalMapType = naver.maps.NaverStyleMapTypeOptions.getNormalMap();
 var openStreetMapType = new naver.maps.ImageMapType({
     name: 'OSM',
     minZoom: 0,

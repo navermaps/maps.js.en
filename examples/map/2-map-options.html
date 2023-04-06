@@ -8,7 +8,8 @@
     <script src="../../docs/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../docs/js/examples-base.js"></script>
     <script type="text/javascript" src="../../docs/js/highlight.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=orK7_YeBAdN64OJ8HUVz&amp;submodules=panorama"></script>
+    
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk"></script>
     <link rel="stylesheet" type="text/css" href="../../docs/css/examples-base.css" />
 </head>
 <body>
@@ -51,6 +52,14 @@ map.setOptions("mapTypeControl", true); //지도 유형 컨트롤의 표시 여�
 
 naver.maps.Event.addListener(map, 'zoom_changed', function (zoom) {
     console.log('zoom:' + zoom);
+});
+
+map.setOptions('minZoom', 10);
+console.log('잘못된 참조 시점', map.getOptions('minZoom'), map.getOptions('minZoom') === 10);
+
+// 지도의 옵션 참조는 init 이벤트 이후에 참조해야 합니다.
+naver.maps.Event.once(map, 'init', function () {
+    console.log('올바른 참조 시점', map.getOptions('minZoom') === 10);
 });
 
 // 지도 인터랙션 옵션

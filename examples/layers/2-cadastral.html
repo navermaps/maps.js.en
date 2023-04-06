@@ -8,7 +8,8 @@
     <script src="../../docs/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../docs/js/examples-base.js"></script>
     <script type="text/javascript" src="../../docs/js/highlight.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=orK7_YeBAdN64OJ8HUVz&amp;submodules=panorama"></script>
+    
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk"></script>
     <link rel="stylesheet" type="text/css" href="../../docs/css/examples-base.css" />
 </head>
 <body>
@@ -43,7 +44,7 @@ var cadastralLayer = new naver.maps.CadastralLayer();
 
 var btn = $('#cadastral');
 
-naver.maps.Event.addListener(map, 'cadastralLayer_changed', function(cadastralLayer) {
+naver.maps.Event.addListener(map, 'cadastralLayer_changed', function() {
     if (cadastralLayer.getMap()) {
         btn.addClass('control-on').val('지적도 끄기');
     } else {
@@ -63,7 +64,7 @@ btn.on('click', function(e) {
     }
 });
 
-naver.maps.Event.once(map, 'init_stylemap', function() {
+naver.maps.Event.once(map, 'init', function() {
     cadastralLayer.setMap(map);
 });
 </script>

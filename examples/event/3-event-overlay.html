@@ -8,8 +8,50 @@
     <script src="../../docs/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../docs/js/examples-base.js"></script>
     <script type="text/javascript" src="../../docs/js/highlight.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=orK7_YeBAdN64OJ8HUVz&amp;submodules=panorama"></script>
+    
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk"></script>
     <link rel="stylesheet" type="text/css" href="../../docs/css/examples-base.css" />
+    <style>
+        /* ref: https://gist.github.com/BrendonKoz/b1df234fe3ee388b402cd8e98f7eedbd */
+        :root {
+            --map-tiles-filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+        }
+        @media (prefers-color-scheme: dark) {
+            .map-tiles {
+                filter:var(--map-tiles-filter, none);
+            }
+        }
+        .cs_mapbridge .map_group .map_marker{position:absolute;width:20px;height:20px;z-index:5}
+        .cs_mapbridge .map_group .map_marker[class*=_big]{z-index:6}
+        .cs_mapbridge .map_group .map_marker .ico{position:absolute;background:url(https://ssl.pstatic.net/sstatic/keypage/outside/scui/map_bridge/im/sp_mapbridge5.png) no-repeat;background-size:400px 450px;-webkit-background-size:400px 450px;z-index:10}
+        .cs_mapbridge .map_group .map_marker .ico:after{position:absolute;top:-5px;right:-5px;bottom:-5px;left:-5px;background-color:transparent;content:'';z-index:30}
+        .cs_mapbridge .map_group .map_marker .shd{position:absolute;top:0;left:0;background:url(https://ssl.pstatic.net/sstatic/keypage/outside/scui/map_bridge/im/sp_mapbridge5.png) no-repeat;background-size:400px 450px;-webkit-background-size:400px 450px;content:''}
+        .cs_mapbridge .map_marker.hp .ico{width:26px;height:36px;background-position:-175px 0;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .map_marker.hp_big .ico{width:38px;height:58px;background-position:-175px -45px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .map_marker.hp_big .shd{top:24px;left:8px;width:38px;height:34px;background-position:-175px -105px;background-size:400px 450px;-webkit-background-size:400px 450px}
+        .cs_mapbridge .map_marker.tvhp .ico{width:26px;height:36px;background-position:-210px 0;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .map_marker.tvhp_big .ico{width:38px;height:58px;background-position:-220px -45px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .map_marker.tvhp_big .shd{top:24px;left:8px;width:38px;height:34px;background-position:-220px -105px;background-size:400px 450px;-webkit-background-size:400px 450px}
+        .cs_mapbridge .crs .map_marker[class*=_big] .shd{top:24px;left:8px;width:38px;height:34px;background-position:-50px -270px;background-size:400px 450px;-webkit-background-size:400px 450px}
+        .cs_mapbridge .crs .map_marker .ico{width:25px;height:36px}
+        .cs_mapbridge .crs .map_marker.num1 .ico{background-position:-5px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .crs .map_marker.num2 .ico{background-position:-35px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .crs .map_marker.num3 .ico{background-position:-65px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .crs .map_marker.num4 .ico{background-position:-95px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .crs .map_marker.num5 .ico{background-position:-125px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .crs .map_marker.num6 .ico{background-position:-278px -387px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .crs .map_marker.num7 .ico{background-position:-305px -387px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .crs .map_marker.num8 .ico{background-position:-334px -387px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:12px 100%;-webkit-transform-origin:12px 100%}
+        .cs_mapbridge .crs .map_marker[class*=_big] .ico{width:38px;height:58px}
+        .cs_mapbridge .crs .map_marker.num1_big .ico{background-position:-160px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .crs .map_marker.num2_big .ico{background-position:-205px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .crs .map_marker.num3_big .ico{background-position:-250px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .crs .map_marker.num4_big .ico{background-position:-295px -215px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .crs .map_marker.num5_big .ico{background-position:-5px -260px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .crs .map_marker.num6_big .ico{background-position:-140px -387px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .crs .map_marker.num7_big .ico{background-position:-185px -387px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+        .cs_mapbridge .crs .map_marker.num8_big .ico{background-position:-231px -387px;background-size:400px 450px;-webkit-background-size:400px 450px;transform-origin:19px 54px;-webkit-transform-origin:19px 54px}
+    </style>
 </head>
 <body>
 
@@ -22,7 +64,6 @@
     <code id="snippet" class="snippet"></code>
 </div>
 <script id="data">
-// path data
 var polylinePath = [
     new naver.maps.LatLng(37.4526437, 126.49236),
     new naver.maps.LatLng(37.4768068, 126.4847975),
@@ -86,13 +127,61 @@ var polygonPath = [
 <script id="code">
     var map = new naver.maps.Map('map', {
         zoom: 10,
-        center: new naver.maps.LatLng(37.3614483, 127.1114883)
+        center: new naver.maps.LatLng(37.3614483, 127.1114883),
+        zoomControl: true,
+        zoomControlOptions: {
+            style: naver.maps.ZoomControlStyle.SMALL,
+            position: naver.maps.Position.RIGHT_CENTER
+        }
     });
+
+    var infoWindow = new naver.maps.InfoWindow();
 
     var marker = new naver.maps.Marker({
         position: map.getCenter(),
         map: map,
         clickable: true
+    });
+
+    var pinkMarker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(37.4857788, 127.0659301),
+        map: map,
+        icon: {
+            content: [
+                '<div class="cs_mapbridge">',
+                '<div class="map_group _map_group">',
+                '<div class="map_marker _marker tvhp tvhp_big">',
+                '<span class="ico _icon"></span>',
+                '<span class="shd"></span>',
+                '</div>',
+                '</div>',
+                '</div>'
+            ].join(''),
+            size: new naver.maps.Size(38, 58),
+            anchor: new naver.maps.Point(19, 58),
+        }
+    });
+    pinkMarker.setTitle('Pink Marker');
+
+    var greenMarker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(37.123267, 127.0659301),
+        map: map,
+        title: 'Green Marker',
+        icon: {
+            content: [
+                '<div class="cs_mapbridge">',
+                '<div class="map_group _map_group crs">',
+                '<div class="map_marker _marker num1 num1_big"> ',
+                '<span class="ico _icon"></span>',
+                '<span class="shd"></span>',
+                '</div>',
+                '</div>',
+                '</div>'
+            ].join(''),
+            size: new naver.maps.Size(38, 58),
+            anchor: new naver.maps.Point(19, 58),
+        },
+        draggable: true
     });
 
     var polyline = new naver.maps.Polyline({
@@ -143,31 +232,123 @@ var polygonPath = [
         map: map
     });
 
-    naver.maps.Event.addListener(marker, 'click', function() {
-        var delta = 0,
-            zoom = map.getZoom();
-
-        if (zoom < 12) {
-            delta = 12 - zoom;
-        } else {
-            delta = 5 - zoom;
-        }
-
-        map.zoomBy(delta, marker.getPosition(), true);
+    var ellipse = new naver.maps.Ellipse({
+        map: map,
+        bounds: new naver.maps.LatLngBounds(
+            new naver.maps.LatLng(37.1793196, 127.6795594),
+            new naver.maps.LatLng(37.5398662, 128.4312422)
+        ),
+        strokeColor: 'yellowgreen',
+        strokeOpacity: 1,
+        strokeWeight: 3,
+        fillColor: 'yellowgreen',
+        fillOpacity: 0.3,
+        clickable: true,
     });
 
-    naver.maps.Event.addListener(polyline, "mousedown", function(e) {
+    var CustomOverlay = function (options) {
+        this._element = $('<div style="position:absolute;left:0;top:0;width:124px;background-color:#F2F0EA;text-align:center;border:2px solid #6C483B;">' +
+            '<img src="./img/example/brown.png" style="width: 120px; height:130px">' +
+            '<span style="font-weight: bold;"> Brown </span>' +
+            '</div>');
+
+        this._addListener();
+        this.setPosition(options.position);
+        this.setMap(options.map || null);
+    };
+
+    CustomOverlay.prototype = new naver.maps.OverlayView();
+    CustomOverlay.prototype.constructor = CustomOverlay;
+
+    CustomOverlay.prototype.setPosition = function (position) {
+        this._position = position;
+        this.draw();
+    };
+
+    CustomOverlay.prototype.getPosition = function () {
+        return this._position;
+    };
+
+    CustomOverlay.prototype.onAdd = function () {
+        var overlayLayer = this.getPanes().overlayLayer;
+
+        this._element.appendTo(overlayLayer);
+    };
+
+    CustomOverlay.prototype.onClick = function (e) {
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+        naver.maps.Event.trigger(this, 'click', this);
+    };
+
+    CustomOverlay.prototype.draw = function () {
+        if (!this.getMap()) {
+            return;
+        }
+
+        var projection = this.getProjection(),
+            position = this.getPosition(),
+            pixelPosition = projection.fromCoordToOffset(position);
+
+        this._element.css('left', pixelPosition.x);
+        this._element.css('top', pixelPosition.y);
+    };
+
+    CustomOverlay.prototype.onRemove = function () {
+        naver.maps.Event.removeDOMListener(this._clickListener);
+        this._element.remove();
+        this._element.off();
+    };
+
+    CustomOverlay.prototype._addListener = function () {
+        this._clickListener = naver.maps.Event.addDOMListener(this._element[0], 'click', naver.maps.Util.bind(this.onClick, this));
+    };
+
+    var customOverlay = new CustomOverlay({
+        map: map,
+        position: new naver.maps.LatLng(37.2849483, 127.1229117)
+    });
+
+    naver.maps.Event.addListener(marker, "click", function () {
+        infoWindow.setContent(getContentElement('DEFAULT MARKER'));
+        infoWindow.open(map, marker);
+    });
+
+    naver.maps.Event.addListener(pinkMarker, "click", function () {
+        infoWindow.setContent(getContentElement('HTML MARKER'));
+        infoWindow.open(map, pinkMarker);
+    });
+
+    naver.maps.Event.addListener(greenMarker, "click", function () {
+        infoWindow.setContent(getContentElement('HTML MARKER'));
+        infoWindow.open(map, greenMarker);
+    });
+
+    naver.maps.Event.addListener(customOverlay, "click", function (overlay) {
+        infoWindow.setContent(getContentElement('CUSTOM OVERLAY'));
+        infoWindow.open(map, overlay.getPosition());
+    });
+
+    naver.maps.Event.addListener(polyline, "mousedown", function () {
         polyline.setOptions({
             strokeWeight: 20
         });
     });
-    naver.maps.Event.addListener(polyline, "mouseup", function(e) {
+
+    naver.maps.Event.addListener(polyline, "mouseup", function () {
         polyline.setOptions({
             strokeWeight: 6
         });
     });
 
-    naver.maps.Event.addListener(polygon, "mouseover", function(e) {
+    naver.maps.Event.addListener(polyline, "click", function () {
+        alert('polyline click');
+    });
+
+    naver.maps.Event.addListener(polygon, "mouseover", function () {
         map.setCursor("pointer");
 
         polygon.setOptions({
@@ -175,7 +356,7 @@ var polygonPath = [
         });
     });
 
-    naver.maps.Event.addListener(polygon, "mouseout", function(e) {
+    naver.maps.Event.addListener(polygon, "mouseout", function () {
         map.setCursor("auto");
 
         polygon.setOptions({
@@ -183,7 +364,11 @@ var polygonPath = [
         });
     });
 
-    naver.maps.Event.addListener(rectangle, "mousemove", function(e) {
+    naver.maps.Event.addListener(polygon, "click", function () {
+        alert('polygon click');
+    });
+
+    naver.maps.Event.addListener(rectangle, "mousemove", function () {
         var strokeWeight = rectangle.get("strokeWeight");
 
         strokeWeight++;
@@ -196,9 +381,13 @@ var polygonPath = [
         });
     });
 
-    var $radius = $({ radius: 3000 });
+    naver.maps.Event.addListener(rectangle, "click", function () {
+        alert('rectangle click');
+    });
 
-    naver.maps.Event.addListener(circle, "dblclick", function(e) {
+    var $radius = $({radius: 3000});
+
+    naver.maps.Event.addListener(circle, "dblclick", function () {
         var radius = circle.getRadius();
 
         $radius[0].radius = radius;
@@ -207,11 +396,11 @@ var polygonPath = [
                 "radius": 6000
             }, {
                 duration: 500,
-                step: function(value) {
+                step: function (value) {
                     circle.setRadius(value);
                 },
 
-                complete: function() {
+                complete: function () {
                     circle.setRadius(6000);
                 }
             });
@@ -220,16 +409,45 @@ var polygonPath = [
                 "radius": 3000
             }, {
                 duration: 500,
-                step: function(value) {
+                step: function (value) {
                     circle.setRadius(value);
                 },
 
-                complete: function() {
+                complete: function () {
                     circle.setRadius(3000);
                 }
             });
         }
     });
+
+    naver.maps.Event.addListener(ellipse, "touchstart", function () {
+        ellipse.setOptions({
+            strokeColor: 'yellow',
+            fillColor: 'yellow',
+            fillOpacity: 0.3
+        });
+    });
+
+    naver.maps.Event.addListener(ellipse, "touchend", function () {
+        ellipse.setOptions({
+            strokeColor: 'yellowgreen',
+            fillColor: 'yellowgreen',
+            fillOpacity: 0.3
+        });
+    });
+
+    naver.maps.Event.addListener(ellipse, "click", function () {
+        map.fitBounds(ellipse.getBounds());
+    });
+
+    naver.maps.Event.addListener(map, 'click', function () {
+        infoWindow.close();
+    });
+
+    function getContentElement(titleString) {
+        return '<div style="padding:20px;">' + titleString + '</div>';
+    }
+
 </script>
 
 </body>

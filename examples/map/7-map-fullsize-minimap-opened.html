@@ -8,7 +8,8 @@
     <script src="../../docs/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../docs/js/examples-base.js"></script>
     <script type="text/javascript" src="../../docs/js/highlight.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk"></script>
+    
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk"></script>
     <link rel="stylesheet" type="text/css" href="../../docs/css/examples-base.css" />
 </head>
 <body>
@@ -56,7 +57,7 @@ var map = new naver.maps.Map('map', {
 
 var semaphore = false;
 
-naver.maps.Event.once(map, 'init_stylemap', function() {
+naver.maps.Event.once(map, 'init', function() {
     map.setOptions({
         mapTypeControl: true,
         scaleControl: false,
@@ -90,6 +91,10 @@ naver.maps.Event.once(map, 'init_stylemap', function() {
             "satellite": "terrain",
             "hybrid": "normal"
         };
+
+        if (!toTypes[mapTypeId]) {
+            return;
+        }
 
         minimap.setMapTypeId(toTypes[mapTypeId]);
     });

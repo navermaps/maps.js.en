@@ -8,7 +8,8 @@
     <script src="../../docs/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../docs/js/examples-base.js"></script>
     <script type="text/javascript" src="../../docs/js/highlight.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=orK7_YeBAdN64OJ8HUVz&amp;submodules=geocoder"></script>
+    
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=83bfuniegk&submodules=geocoder"></script>
     <link rel="stylesheet" type="text/css" href="../../docs/css/examples-base.css" />
 </head>
 <body>
@@ -30,10 +31,6 @@ var map = new naver.maps.Map("map", {
     infoWindow = null;
 
 function initGeocoder() {
-    if (!map.isStyleMapReady) {
-        return;
-    }
-
     var latlng = map.getCenter();
     var utmk = naver.maps.TransCoord.fromLatLngToUTMK(latlng); // 위/경도 -> UTMK
     var tm128 = naver.maps.TransCoord.fromUTMKToTM128(utmk);   // UTMK -> TM128
@@ -70,7 +67,6 @@ function initGeocoder() {
 }
 
 naver.maps.onJSContentLoaded = initGeocoder;
-naver.maps.Event.once(map, 'init_stylemap', initGeocoder);
 </script>
 
 </body>
